@@ -27,13 +27,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     logindialog.cpp \
-    register.cpp
+    register.cpp \
+    modify.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
-    register.h
+    register.h \
+    modify.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
-    register.ui
+    register.ui \
+    modify.ui
 RC_ICONS = 1.ico

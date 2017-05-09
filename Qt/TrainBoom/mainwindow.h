@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void receive(QJsonObject t);
 
 private slots:
     void on_pushButton_clicked();
@@ -22,6 +23,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    QJsonObject usrInfo;
 };
 
 #endif // MAINWINDOW_H

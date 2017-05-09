@@ -21,11 +21,6 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui->setupUi(this);
 }
 
-void LoginDialog::receive(QJsonObject t)
-{
-    usrInfo = t;
-}
-
 LoginDialog::~LoginDialog()
 {
     delete ui;
@@ -39,9 +34,12 @@ QString loginEncrypt(QString s)
     QCryptographicHash *hash=new QCryptographicHash(QCryptographicHash::Sha1);
     hash->addData(string);
     QByteArray string1 = hash->result();
-    QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
-    QString string2 = codec->toUnicode(string1);
+    QString string2 = string1.toHex();
     return string2;
+}
+QJsonObject LoginDialog::send()
+{
+    return usrInfo;
 }
 
 void LoginDialog::on_loginBtn_clicked()
@@ -87,7 +85,7 @@ void LoginDialog::on_loginBtn_clicked()
         res = QJsonDocument::fromJson(bt).object();
         if(res["data"].toObject()["password"] == loginEncrypt(ui->pwdLineEdit->text()))
         {
-            receive(res["data"].toObject());
+            usrInfo = res["data"].toObject();
             accept();
         }
         else

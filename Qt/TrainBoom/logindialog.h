@@ -15,7 +15,7 @@ class LoginDialog : public QDialog
 public:
     explicit LoginDialog(QWidget *parent = 0);
     ~LoginDialog();
-    void receive(QJsonObject t);
+    QJsonObject send();
 
 signals:
 

@@ -44,8 +44,7 @@ QString regEncrypt(QString s)
     QCryptographicHash *hash=new QCryptographicHash(QCryptographicHash::Sha1);
     hash->addData(string);
     QByteArray string1 = hash->result();
-    QTextCodec *codec = QTextCodec::codecForName("KOI8-R");
-    QString string2 = codec->toUnicode(string1);
+    QString string2 = string1.toHex();
     return string2;
 }
 
