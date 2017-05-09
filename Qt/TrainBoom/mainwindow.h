@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QJsonObject>
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void on_action_UL_triggered();
 
 private:
     Ui::MainWindow *ui;

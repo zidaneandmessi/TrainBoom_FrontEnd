@@ -50,6 +50,23 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu_U">
+    <property name="title">
+     <string>用户(&amp;U)</string>
+    </property>
+    <addaction name="action_UM"/>
+    <addaction name="separator"/>
+    <addaction name="action_UL"/>
+    <addaction name="action_UQ"/>
+   </widget>
+   <widget class="QMenu" name="menu_H">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="action_HA"/>
+   </widget>
+   <addaction name="menu_U"/>
+   <addaction name="menu_H"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -60,8 +77,45 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_UM">
+   <property name="text">
+    <string>修改(M)</string>
+   </property>
+  </action>
+  <action name="action_UL">
+   <property name="text">
+    <string>注销(&amp;L)</string>
+   </property>
+  </action>
+  <action name="action_UQ">
+   <property name="text">
+    <string>退出(&amp;Q)</string>
+   </property>
+  </action>
+  <action name="action_HA">
+   <property name="text">
+    <string>关于(&amp;A)</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>action_UQ</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>199</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

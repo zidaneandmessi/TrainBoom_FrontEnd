@@ -6,6 +6,7 @@
 #include "qnetwork.h"
 #include "register.h"
 #include "qtextcodec.h"
+#include "mainwindow.h"
 #include <QUrl>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
@@ -18,6 +19,11 @@ LoginDialog::LoginDialog(QWidget *parent) :
     ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
+}
+
+void LoginDialog::receive(QJsonObject t)
+{
+    usrInfo = t;
 }
 
 LoginDialog::~LoginDialog()
@@ -80,13 +86,15 @@ void LoginDialog::on_loginBtn_clicked()
         bt = loginReply->readAll();
         res = QJsonDocument::fromJson(bt).object();
         if(res["data"].toObject()["password"] == loginEncrypt(ui->pwdLineEdit->text()))
-              accept();
+        {
+            receive(res["data"].toObject());
+            accept();
+        }
         else
         {
             QMessageBox::warning(this, tr("Warning!"), tr("Wrong password!!!"),QMessageBox::Yes);
-            ui->userLineEdit->clear();
             ui->pwdLineEdit->clear();
-            ui->userLineEdit->setFocus();
+            ui->pwdLineEdit->setFocus();
         }
     }
 }

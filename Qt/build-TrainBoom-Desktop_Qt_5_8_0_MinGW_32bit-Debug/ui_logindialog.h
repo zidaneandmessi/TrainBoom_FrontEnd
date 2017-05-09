@@ -80,8 +80,8 @@ public:
         LoginDialog->setWindowTitle(QApplication::translate("LoginDialog", "Login", Q_NULLPTR));
         label->setText(QApplication::translate("LoginDialog", "Username:", Q_NULLPTR));
         label_2->setText(QApplication::translate("LoginDialog", "Password:", Q_NULLPTR));
-        userLineEdit->setPlaceholderText(QApplication::translate("LoginDialog", "\350\257\267\350\276\223\345\205\245\342\200\234\346\261\237\346\263\275\346\260\221\342\200\235", Q_NULLPTR));
-        pwdLineEdit->setPlaceholderText(QApplication::translate("LoginDialog", "\350\257\267\350\276\223\345\205\245\342\200\23419260817\342\200\235", Q_NULLPTR));
+        userLineEdit->setPlaceholderText(QString());
+        pwdLineEdit->setPlaceholderText(QString());
         loginBtn->setText(QApplication::translate("LoginDialog", "Login", Q_NULLPTR));
         exitBtn->setText(QApplication::translate("LoginDialog", "Exit", Q_NULLPTR));
         label_3->setText(QApplication::translate("LoginDialog", "\346\273\221\351\223\201\345\215\242\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));

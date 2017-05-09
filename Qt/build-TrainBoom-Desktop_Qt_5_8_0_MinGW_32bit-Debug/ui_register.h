@@ -153,7 +153,7 @@ public:
 
     void retranslateUi(QDialog *Register)
     {
-        Register->setWindowTitle(QApplication::translate("Register", "Dialog", Q_NULLPTR));
+        Register->setWindowTitle(QApplication::translate("Register", "Register", Q_NULLPTR));
         pwdLineEdit->setPlaceholderText(QString());
         exitBtn->setText(QApplication::translate("Register", "Back", Q_NULLPTR));
         label_3->setText(QApplication::translate("Register", "\346\273\221\351\223\201\345\215\242\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));

@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "logindialog.h"
 #include <QApplication>
+#include <QJsonObject>
+
+QJsonObject usrInfo;
 
 int main(int argc, char *argv[])
 {
@@ -13,5 +16,4 @@ int main(int argc, char *argv[])
        return a.exec();
     }
     else return 0;
-    return a.exec();
 }
