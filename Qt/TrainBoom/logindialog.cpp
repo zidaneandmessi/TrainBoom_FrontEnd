@@ -86,7 +86,7 @@ void LoginDialog::on_loginBtn_clicked()
         if(res["data"].toObject()["password"] == loginEncrypt(ui->pwdLineEdit->text()))
         {
             usrInfo = res["data"].toObject();
-            accept();
+            reject();
         }
         else
         {
@@ -99,7 +99,7 @@ void LoginDialog::on_loginBtn_clicked()
 
 void LoginDialog::on_regBtn_clicked()
 {
-    this->close();
+    this->hide();
     Register *w = new Register;
     w->exec();
 }

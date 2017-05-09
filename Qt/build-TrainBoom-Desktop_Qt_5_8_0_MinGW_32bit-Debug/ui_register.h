@@ -145,6 +145,17 @@ public:
         label_12 = new QLabel(Register);
         label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setGeometry(QRect(340, 150, 31, 20));
+        QWidget::setTabOrder(userLineEdit, pwdLineEdit);
+        QWidget::setTabOrder(pwdLineEdit, pwdLineEdit2);
+        QWidget::setTabOrder(pwdLineEdit2, realLineEdit);
+        QWidget::setTabOrder(realLineEdit, phoneLineEdit);
+        QWidget::setTabOrder(phoneLineEdit, emailLineEdit);
+        QWidget::setTabOrder(emailLineEdit, mottoLineEdit);
+        QWidget::setTabOrder(mottoLineEdit, maleRadioBtn);
+        QWidget::setTabOrder(maleRadioBtn, femaleRadioBtn);
+        QWidget::setTabOrder(femaleRadioBtn, elseRadioBtn);
+        QWidget::setTabOrder(elseRadioBtn, regBtn);
+        QWidget::setTabOrder(regBtn, exitBtn);
 
         retranslateUi(Register);
 

@@ -383,6 +383,20 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>pwdLineEdit</tabstop>
+  <tabstop>npwdLineEdit</tabstop>
+  <tabstop>npwdLineEdit2</tabstop>
+  <tabstop>realLineEdit</tabstop>
+  <tabstop>phoneLineEdit</tabstop>
+  <tabstop>emailLineEdit</tabstop>
+  <tabstop>mottoLineEdit</tabstop>
+  <tabstop>maleRadioBtn</tabstop>
+  <tabstop>femaleRadioBtn</tabstop>
+  <tabstop>elseRadioBtn</tabstop>
+  <tabstop>regBtn</tabstop>
+  <tabstop>exitBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
