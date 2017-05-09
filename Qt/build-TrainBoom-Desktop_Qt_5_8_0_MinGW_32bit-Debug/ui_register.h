@@ -65,9 +65,9 @@ public:
         exitBtn->setGeometry(QRect(210, 350, 93, 28));
         label_3 = new QLabel(Register);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(80, 40, 251, 41));
+        label_3->setGeometry(QRect(80, 30, 251, 41));
         QFont font;
-        font.setFamily(QString::fromUtf8("\351\224\220\345\255\227\345\267\245\346\210\277\347\273\275\346\224\276\351\273\221\347\256\2001.0"));
+        font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
         label_3->setFont(font);
         label = new QLabel(Register);
@@ -156,7 +156,7 @@ public:
         Register->setWindowTitle(QApplication::translate("Register", "Register", Q_NULLPTR));
         pwdLineEdit->setPlaceholderText(QString());
         exitBtn->setText(QApplication::translate("Register", "Back", Q_NULLPTR));
-        label_3->setText(QApplication::translate("Register", "\346\273\221\351\223\201\345\215\242\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
+        label_3->setText(QApplication::translate("Register", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
         label->setText(QApplication::translate("Register", "Username:", Q_NULLPTR));
         userLineEdit->setPlaceholderText(QString());
         label_2->setText(QApplication::translate("Register", "Password:", Q_NULLPTR));

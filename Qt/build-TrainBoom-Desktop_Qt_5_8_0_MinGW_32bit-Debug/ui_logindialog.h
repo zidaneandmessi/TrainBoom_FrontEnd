@@ -62,7 +62,7 @@ public:
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(80, 30, 251, 41));
         QFont font;
-        font.setFamily(QString::fromUtf8("\351\224\220\345\255\227\345\267\245\346\210\277\347\273\275\346\224\276\351\273\221\347\256\2001.0"));
+        font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
         label_3->setFont(font);
         regBtn = new QPushButton(LoginDialog);
@@ -84,7 +84,7 @@ public:
         pwdLineEdit->setPlaceholderText(QString());
         loginBtn->setText(QApplication::translate("LoginDialog", "Login", Q_NULLPTR));
         exitBtn->setText(QApplication::translate("LoginDialog", "Exit", Q_NULLPTR));
-        label_3->setText(QApplication::translate("LoginDialog", "\346\273\221\351\223\201\345\215\242\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
+        label_3->setText(QApplication::translate("LoginDialog", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
         regBtn->setText(QApplication::translate("LoginDialog", "Register", Q_NULLPTR));
     } // retranslateUi
 

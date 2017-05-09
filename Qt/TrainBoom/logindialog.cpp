@@ -3,16 +3,18 @@
 #include "ui_logindialog.h"
 #include "qjsonobject.h"
 #include "qjsondocument.h"
-#include "qnetwork.h"
 #include "register.h"
 #include "qtextcodec.h"
 #include "mainwindow.h"
+#include "qnetwork.h"
 #include <QUrl>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <Qstring>
 #include <QCryptographicHash>
+
+const QString website = "http://39.108.7.208:3000";
 
 LoginDialog::LoginDialog(QWidget *parent) :
     QDialog(parent),
@@ -25,8 +27,6 @@ LoginDialog::~LoginDialog()
 {
     delete ui;
 }
-
-const QString website = "http://39.108.7.208:3000";
 
 QString loginEncrypt(QString s)
 {
@@ -69,7 +69,7 @@ void LoginDialog::on_loginBtn_clicked()
 
 
     if (id.isEmpty())
-        QMessageBox::warning(this, tr("Warning!"),tr("Username doesn't exist!!!"),QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("Username doesn't exist!!!"), QMessageBox::Yes);
     else
     {
         QNetworkRequest loginRequest;
@@ -99,7 +99,7 @@ void LoginDialog::on_loginBtn_clicked()
 
 void LoginDialog::on_regBtn_clicked()
 {
-    this->hide();
+    this->close();
     Register *w = new Register;
     w->exec();
 }

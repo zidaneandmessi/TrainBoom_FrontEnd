@@ -108,12 +108,12 @@
    </property>
    <property name="font">
     <font>
-     <family>锐字工房绽放黑简1.0</family>
+     <family>等线</family>
      <pointsize>18</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>滑铁卢系统测试版</string>
+    <string>尛焱轟系统测试版</string>
    </property>
   </widget>
   <widget class="QPushButton" name="regBtn">
@@ -130,6 +130,13 @@
    </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>userLineEdit</tabstop>
+  <tabstop>pwdLineEdit</tabstop>
+  <tabstop>loginBtn</tabstop>
+  <tabstop>regBtn</tabstop>
+  <tabstop>exitBtn</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

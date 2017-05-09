@@ -16,10 +16,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void receive(QJsonObject t);
+    QJsonObject send();
 
 private slots:
     void on_pushButton_clicked();
     void on_action_UL_triggered();
+    void on_action_UM_triggered();
 
 private:
     Ui::MainWindow *ui;

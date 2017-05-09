@@ -15,6 +15,7 @@
 #include <QNetworkReply>
 #include <QCryptographicHash>
 
+const QString website = "http://39.108.7.208:3000";
 
 Register::Register(QWidget *parent) :
     QDialog(parent),
@@ -31,17 +32,15 @@ Register::~Register()
 
 void Register::on_exitBtn_clicked()
 {
-    this->hide();
+    this->close();
     LoginDialog *w = new LoginDialog;
     w->exec();
 }
 
-const QString website = "http://39.108.7.208:3000";
-
 QString regEncrypt(QString s)
 {
     QByteArray string = s.toUtf8();
-    QCryptographicHash *hash=new QCryptographicHash(QCryptographicHash::Sha1);
+    QCryptographicHash *hash = new QCryptographicHash(QCryptographicHash::Sha1);
     hash->addData(string);
     QByteArray string1 = hash->result();
     QString string2 = string1.toHex();
@@ -51,11 +50,12 @@ QString regEncrypt(QString s)
 void Register::on_regBtn_clicked()
 {
     if (ui->userLineEdit->text().isEmpty()
-            ||ui->pwdLineEdit->text().isEmpty()
-            ||ui->pwdLineEdit2->text().isEmpty())
-        QMessageBox::warning(this, tr("Warning!"),tr("Information incomplete!!!"),QMessageBox::Yes);
+            || ui->pwdLineEdit->text().isEmpty()
+            || ui->pwdLineEdit2->text().isEmpty()
+            || !ui->maleRadioBtn->isChecked() && !ui->femaleRadioBtn->isChecked() && !ui->elseRadioBtn->isChecked())
+        QMessageBox::warning(this, tr("Warning!"), tr("Information incomplete!!!"), QMessageBox::Yes);
     else if (ui->pwdLineEdit->text() != ui->pwdLineEdit2->text())
-        QMessageBox::warning(this, tr("Warning!"),tr("Password mismatched!!!"),QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("Password mismatched!!!"), QMessageBox::Yes);
     else
     {
         QString id;
@@ -77,7 +77,7 @@ void Register::on_regBtn_clicked()
 
 
         if (!id.isEmpty())
-            QMessageBox::warning(this, tr("Warning!"),tr("Username already exists!!!"),QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("Username already exists!!!"), QMessageBox::Yes);
         else
         {
             QJsonObject obj;

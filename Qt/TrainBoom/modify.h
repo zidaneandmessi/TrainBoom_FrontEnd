@@ -2,6 +2,7 @@
 #define MODIFY_H
 
 #include <QDialog>
+#include <QJsonObject>
 
 namespace Ui {
 class modify;
@@ -13,10 +14,19 @@ class modify : public QDialog
 
 public:
     explicit modify(QWidget *parent = 0);
+    void receive(QJsonObject t);
+    QJsonObject send();
+    void setUI();
     ~modify();
+
+private slots:
+    void on_exitBtn_clicked();
+
+    void on_regBtn_clicked();
 
 private:
     Ui::modify *ui;
+    QJsonObject usrInfo;
 };
 
 #endif // MODIFY_H
