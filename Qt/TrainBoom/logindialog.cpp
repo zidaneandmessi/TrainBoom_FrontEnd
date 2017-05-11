@@ -99,7 +99,7 @@ void LoginDialog::on_loginBtn_clicked()
 
 void LoginDialog::on_regBtn_clicked()
 {
-    this->hide();
+    //this->hide();
     Register *w = new Register;
     w->exec();
 }

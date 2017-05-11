@@ -33,8 +33,8 @@ Register::~Register()
 void Register::on_exitBtn_clicked()
 {
     this->close();
-    LoginDialog *w = new LoginDialog;
-    w->exec();
+    //LoginDialog *w = new LoginDialog;
+    //w->exec();
 }
 
 QString regEncrypt(QString s)
@@ -105,9 +105,9 @@ void Register::on_regBtn_clicked()
             bt = regReply->readAll();
             res = QJsonDocument::fromJson(bt).object();
 
-            this->hide();
-            LoginDialog *w = new LoginDialog;
-            w->exec();
+            this->close();
+            //LoginDialog *w = new LoginDialog;
+            //w->exec();
         }
     }
 }
