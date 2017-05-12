@@ -35,14 +35,14 @@ QT_MOC_LITERAL(0, 0, 10), // "MainWindow"
 QT_MOC_LITERAL(1, 11, 22), // "on_action_UL_triggered"
 QT_MOC_LITERAL(2, 34, 0), // ""
 QT_MOC_LITERAL(3, 35, 22), // "on_action_UM_triggered"
-QT_MOC_LITERAL(4, 58, 22), // "on_adminButton_clicked"
+QT_MOC_LITERAL(4, 58, 22), // "on_startButton_clicked"
 QT_MOC_LITERAL(5, 81, 22), // "on_queryButton_clicked"
 QT_MOC_LITERAL(6, 104, 21), // "on_pushButton_clicked"
 QT_MOC_LITERAL(7, 126, 22) // "on_orderButton_clicked"
 
     },
     "MainWindow\0on_action_UL_triggered\0\0"
-    "on_action_UM_triggered\0on_adminButton_clicked\0"
+    "on_action_UM_triggered\0on_startButton_clicked\0"
     "on_queryButton_clicked\0on_pushButton_clicked\0"
     "on_orderButton_clicked"
 };
@@ -88,7 +88,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->on_action_UL_triggered(); break;
         case 1: _t->on_action_UM_triggered(); break;
-        case 2: _t->on_adminButton_clicked(); break;
+        case 2: _t->on_startButton_clicked(); break;
         case 3: _t->on_queryButton_clicked(); break;
         case 4: _t->on_pushButton_clicked(); break;
         case 5: _t->on_orderButton_clicked(); break;

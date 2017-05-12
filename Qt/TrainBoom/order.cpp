@@ -26,6 +26,9 @@ Order::Order(QWidget *parent) :
     ui->setupUi(this);
     for(int i = 0; i < 8; i++)
         ui->tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->tableWidget->setAlternatingRowColors(true);
 }
 
 void Order::receiveUser(QJsonObject t)

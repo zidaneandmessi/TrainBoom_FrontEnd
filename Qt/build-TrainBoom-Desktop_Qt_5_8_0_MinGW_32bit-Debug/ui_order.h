@@ -79,9 +79,9 @@ public:
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("Order", "\350\275\246\346\254\241", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem1 = tableWidget->horizontalHeaderItem(1);
-        ___qtablewidgetitem1->setText(QApplication::translate("Order", "\350\265\267\347\202\271", Q_NULLPTR));
+        ___qtablewidgetitem1->setText(QApplication::translate("Order", "\350\265\267\347\202\271\347\253\231", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem2 = tableWidget->horizontalHeaderItem(2);
-        ___qtablewidgetitem2->setText(QApplication::translate("Order", "\347\273\210\347\202\271", Q_NULLPTR));
+        ___qtablewidgetitem2->setText(QApplication::translate("Order", "\347\273\210\347\202\271\347\253\231", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem3 = tableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("Order", "\345\207\272\345\217\221\346\227\266\351\227\264", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem4 = tableWidget->horizontalHeaderItem(4);
@@ -91,7 +91,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
         ___qtablewidgetitem6->setText(QApplication::translate("Order", "\346\225\260\351\207\217", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
-        ___qtablewidgetitem7->setText(QApplication::translate("Order", "\344\273\267\346\240\274", Q_NULLPTR));
+        ___qtablewidgetitem7->setText(QApplication::translate("Order", "\351\207\221\351\242\235", Q_NULLPTR));
         pushButton->setText(QApplication::translate("Order", "\350\277\224\345\233\236", Q_NULLPTR));
     } // retranslateUi
 

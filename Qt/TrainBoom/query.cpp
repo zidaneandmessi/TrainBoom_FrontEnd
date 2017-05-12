@@ -46,6 +46,8 @@ void Query::on_pushButton_clicked()
     if (ui->stLineEdit->text().isEmpty()
             || ui->enLineEdit->text().isEmpty())
         QMessageBox::warning(this, tr("Warning!"), tr("请输入起点站与终点站!!!"), QMessageBox::Yes);
+    else if (ui->stLineEdit->text() == ui->enLineEdit->text())
+        QMessageBox::warning(this, tr("Warning!"), tr("起点站与终点站相同!!!"), QMessageBox::Yes);
     else
     {
         QString id;
@@ -65,7 +67,7 @@ void Query::on_pushButton_clicked()
         QByteArray bt = queryReply->readAll();
         QJsonObject res = QJsonDocument::fromJson(bt).object();
         if (res["type"] == "error")
-            QMessageBox::warning(this, tr("Warning!"), tr("起点站/终点站不存在!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("没有找到满足条件的车票!!!"), QMessageBox::Yes);
         else
         {
             routes = res;

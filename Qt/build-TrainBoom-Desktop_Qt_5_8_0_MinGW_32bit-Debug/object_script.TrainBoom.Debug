@@ -4,14 +4,14 @@ INPUT(
 ./debug\logindialog.o
 ./debug\register.o
 ./debug\modify.o
-./debug\admin.o
 ./debug\query.o
 ./debug\order.o
+./debug\buy.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
 ./debug\moc_register.o
 ./debug\moc_modify.o
-./debug\moc_admin.o
 ./debug\moc_query.o
 ./debug\moc_order.o
+./debug\moc_buy.o
 );

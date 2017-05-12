@@ -29,17 +29,17 @@ SOURCES += main.cpp\
     logindialog.cpp \
     register.cpp \
     modify.cpp \
-    admin.cpp \
     query.cpp \
-    order.cpp
+    order.cpp \
+    buy.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
     register.h \
     modify.h \
-    admin.h \
     query.h \
-    order.h
+    order.h \
+    buy.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
@@ -47,6 +47,7 @@ FORMS    += mainwindow.ui \
     modify.ui \
     admin.ui \
     query.ui \
-    order.ui
+    order.ui \
+    buy.ui
 
 RC_ICONS = icon.ico

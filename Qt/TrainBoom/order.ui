@@ -54,12 +54,12 @@
    </column>
    <column>
     <property name="text">
-     <string>起点</string>
+     <string>起点站</string>
     </property>
    </column>
    <column>
     <property name="text">
-     <string>终点</string>
+     <string>终点站</string>
     </property>
    </column>
    <column>
@@ -84,7 +84,7 @@
    </column>
    <column>
     <property name="text">
-     <string>价格</string>
+     <string>金额</string>
     </property>
    </column>
   </widget>
