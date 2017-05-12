@@ -23,7 +23,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Username:</string>
+    <string>用户名:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -36,7 +36,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Password:</string>
+    <string>密码：</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="userLineEdit">
@@ -81,7 +81,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Login</string>
+    <string>登录</string>
    </property>
   </widget>
   <widget class="QPushButton" name="exitBtn">
@@ -94,7 +94,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Exit</string>
+    <string>退出</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -126,7 +126,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Register</string>
+    <string>注册</string>
    </property>
   </widget>
  </widget>

@@ -15,17 +15,21 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void receive(QJsonObject t);
-    QJsonObject send();
+    void receiveUser(QJsonObject t);
+    void receiveRoutes(QJsonObject t);
+    QJsonObject sendUser();
 
 private slots:
-    void on_pushButton_clicked();
     void on_action_UL_triggered();
     void on_action_UM_triggered();
+    void on_adminButton_clicked();
+    void on_queryButton_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
-    QJsonObject usrInfo;
+    QJsonObject usrInfo, routes;
 };
 
 #endif // MAINWINDOW_H

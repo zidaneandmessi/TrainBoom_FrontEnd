@@ -68,6 +68,10 @@ public:
         regBtn = new QPushButton(LoginDialog);
         regBtn->setObjectName(QStringLiteral("regBtn"));
         regBtn->setGeometry(QRect(160, 220, 93, 28));
+        QWidget::setTabOrder(userLineEdit, pwdLineEdit);
+        QWidget::setTabOrder(pwdLineEdit, loginBtn);
+        QWidget::setTabOrder(loginBtn, regBtn);
+        QWidget::setTabOrder(regBtn, exitBtn);
 
         retranslateUi(LoginDialog);
         QObject::connect(exitBtn, SIGNAL(clicked()), LoginDialog, SLOT(close()));
@@ -78,14 +82,14 @@ public:
     void retranslateUi(QDialog *LoginDialog)
     {
         LoginDialog->setWindowTitle(QApplication::translate("LoginDialog", "Login", Q_NULLPTR));
-        label->setText(QApplication::translate("LoginDialog", "Username:", Q_NULLPTR));
-        label_2->setText(QApplication::translate("LoginDialog", "Password:", Q_NULLPTR));
+        label->setText(QApplication::translate("LoginDialog", "\347\224\250\346\210\267\345\220\215:", Q_NULLPTR));
+        label_2->setText(QApplication::translate("LoginDialog", "\345\257\206\347\240\201\357\274\232", Q_NULLPTR));
         userLineEdit->setPlaceholderText(QString());
         pwdLineEdit->setPlaceholderText(QString());
-        loginBtn->setText(QApplication::translate("LoginDialog", "Login", Q_NULLPTR));
-        exitBtn->setText(QApplication::translate("LoginDialog", "Exit", Q_NULLPTR));
+        loginBtn->setText(QApplication::translate("LoginDialog", "\347\231\273\345\275\225", Q_NULLPTR));
+        exitBtn->setText(QApplication::translate("LoginDialog", "\351\200\200\345\207\272", Q_NULLPTR));
         label_3->setText(QApplication::translate("LoginDialog", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
-        regBtn->setText(QApplication::translate("LoginDialog", "Register", Q_NULLPTR));
+        regBtn->setText(QApplication::translate("LoginDialog", "\346\263\250\345\206\214", Q_NULLPTR));
     } // retranslateUi
 
 };

@@ -14,8 +14,8 @@ class modify : public QDialog
 
 public:
     explicit modify(QWidget *parent = 0);
-    void receive(QJsonObject t);
-    QJsonObject send();
+    void receiveUser(QJsonObject t);
+    QJsonObject sendUser();
     void setUI();
     ~modify();
 

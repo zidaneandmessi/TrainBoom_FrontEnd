@@ -34,12 +34,12 @@ void modify::setUI()
     else if (g == 2) ui->elseRadioBtn->setChecked(1);
 }
 
-void modify::receive(QJsonObject t)
+void modify::receiveUser(QJsonObject t)
 {
     usrInfo = t;
 }
 
-QJsonObject modify::send()
+QJsonObject modify::sendUser()
 {
     return usrInfo;
 }
@@ -68,13 +68,13 @@ QString modEncrypt(QString s)
 void modify::on_regBtn_clicked()
 {
     if (!ui->maleRadioBtn->isChecked() && !ui->femaleRadioBtn->isChecked() && !ui->elseRadioBtn->isChecked())
-        QMessageBox::warning(this, tr("Warning!"), tr("Information incomplete!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("请选择性别!!!"), QMessageBox::Yes);
     else if (ui->pwdLineEdit->text().isEmpty())
-        QMessageBox::warning(this, tr("Warning!"), tr("Old password requested!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("请输入原密码!!!"), QMessageBox::Yes);
     else if (modEncrypt(ui->pwdLineEdit->text()) != usrInfo["password"].toString())
-        QMessageBox::warning(this, tr("Warning!"), tr("Wrong password!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("原密码错误!!!"), QMessageBox::Yes);
     else if (ui->npwdLineEdit->text() != ui->npwdLineEdit2->text())
-        QMessageBox::warning(this, tr("Warning!"), tr("Password mismatched!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("密码不匹配!!!"), QMessageBox::Yes);
     else
     {
         QString id;
@@ -124,7 +124,7 @@ void modify::on_regBtn_clicked()
         res = QJsonDocument::fromJson(bt).object();
         usrInfo = res["data"].toObject();
 
-        QMessageBox::warning(this, tr("Warning!"), tr("Modification Succeeded!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("信息修改成功!!!"), QMessageBox::Yes);
         accept();
     }
 }

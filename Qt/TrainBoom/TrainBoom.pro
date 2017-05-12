@@ -28,15 +28,22 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     logindialog.cpp \
     register.cpp \
-    modify.cpp
+    modify.cpp \
+    admin.cpp \
+    query.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
     register.h \
-    modify.h
+    modify.h \
+    admin.h \
+    query.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
     register.ui \
-    modify.ui
-RC_ICONS = 1.ico
+    modify.ui \
+    admin.ui \
+    query.ui
+
+RC_ICONS = icon.ico

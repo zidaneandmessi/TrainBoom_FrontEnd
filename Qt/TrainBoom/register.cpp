@@ -53,9 +53,9 @@ void Register::on_regBtn_clicked()
             || ui->pwdLineEdit->text().isEmpty()
             || ui->pwdLineEdit2->text().isEmpty()
             || !ui->maleRadioBtn->isChecked() && !ui->femaleRadioBtn->isChecked() && !ui->elseRadioBtn->isChecked())
-        QMessageBox::warning(this, tr("Warning!"), tr("Information incomplete!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("请输入所有必要信息!!!"), QMessageBox::Yes);
     else if (ui->pwdLineEdit->text() != ui->pwdLineEdit2->text())
-        QMessageBox::warning(this, tr("Warning!"), tr("Password mismatched!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("密码不匹配!!!"), QMessageBox::Yes);
     else
     {
         QString id;
@@ -77,7 +77,7 @@ void Register::on_regBtn_clicked()
 
 
         if (!id.isEmpty())
-            QMessageBox::warning(this, tr("Warning!"), tr("Username already exists!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("用户名已存在!!!"), QMessageBox::Yes);
         else
         {
             QJsonObject obj;
@@ -106,8 +106,6 @@ void Register::on_regBtn_clicked()
             res = QJsonDocument::fromJson(bt).object();
 
             this->close();
-            //LoginDialog *w = new LoginDialog;
-            //w->exec();
         }
     }
 }

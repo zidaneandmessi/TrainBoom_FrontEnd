@@ -37,7 +37,7 @@ QString loginEncrypt(QString s)
     QString string2 = string1.toHex();
     return string2;
 }
-QJsonObject LoginDialog::send()
+QJsonObject LoginDialog::sendUser()
 {
     return usrInfo;
 }
@@ -46,7 +46,7 @@ void LoginDialog::on_loginBtn_clicked()
 {
     if(ui->userLineEdit->text().isEmpty() || ui->pwdLineEdit->text().isEmpty())
     {
-        QMessageBox::warning(this, tr("Warning!"),tr("Empty username or password!!!"),QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"),tr("请输入用户名和密码!!!"),QMessageBox::Yes);
         return;
     }
 
@@ -69,7 +69,7 @@ void LoginDialog::on_loginBtn_clicked()
 
 
     if (id.isEmpty())
-        QMessageBox::warning(this, tr("Warning!"), tr("Username doesn't exist!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("用户名不存在!!!"), QMessageBox::Yes);
     else
     {
         QNetworkRequest loginRequest;
@@ -86,11 +86,11 @@ void LoginDialog::on_loginBtn_clicked()
         if(res["data"].toObject()["password"] == loginEncrypt(ui->pwdLineEdit->text()))
         {
             usrInfo = res["data"].toObject();
-            reject();
+            accept();
         }
         else
         {
-            QMessageBox::warning(this, tr("Warning!"), tr("Wrong password!!!"),QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("密码错误!!!"),QMessageBox::Yes);
             ui->pwdLineEdit->clear();
             ui->pwdLineEdit->setFocus();
         }
@@ -99,7 +99,6 @@ void LoginDialog::on_loginBtn_clicked()
 
 void LoginDialog::on_regBtn_clicked()
 {
-    //this->hide();
     Register *w = new Register;
     w->exec();
 }

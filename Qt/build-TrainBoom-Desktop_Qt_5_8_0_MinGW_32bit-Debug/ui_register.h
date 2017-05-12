@@ -49,6 +49,7 @@ public:
     QLabel *label_10;
     QLabel *label_11;
     QLabel *label_12;
+    QLabel *label_13;
 
     void setupUi(QDialog *Register)
     {
@@ -65,7 +66,7 @@ public:
         exitBtn->setGeometry(QRect(210, 350, 93, 28));
         label_3 = new QLabel(Register);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(80, 30, 251, 41));
+        label_3->setGeometry(QRect(170, 30, 61, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
@@ -127,14 +128,14 @@ public:
         mottoLineEdit->setClearButtonEnabled(false);
         maleRadioBtn = new QRadioButton(Register);
         maleRadioBtn->setObjectName(QStringLiteral("maleRadioBtn"));
-        maleRadioBtn->setGeometry(QRect(140, 300, 61, 19));
+        maleRadioBtn->setGeometry(QRect(150, 300, 61, 19));
         femaleRadioBtn = new QRadioButton(Register);
         femaleRadioBtn->setObjectName(QStringLiteral("femaleRadioBtn"));
         femaleRadioBtn->setEnabled(true);
         femaleRadioBtn->setGeometry(QRect(210, 300, 81, 19));
         elseRadioBtn = new QRadioButton(Register);
         elseRadioBtn->setObjectName(QStringLiteral("elseRadioBtn"));
-        elseRadioBtn->setGeometry(QRect(300, 300, 61, 19));
+        elseRadioBtn->setGeometry(QRect(270, 300, 61, 19));
         elseRadioBtn->setChecked(true);
         label_10 = new QLabel(Register);
         label_10->setObjectName(QStringLiteral("label_10"));
@@ -145,6 +146,9 @@ public:
         label_12 = new QLabel(Register);
         label_12->setObjectName(QStringLiteral("label_12"));
         label_12->setGeometry(QRect(340, 150, 31, 20));
+        label_13 = new QLabel(Register);
+        label_13->setObjectName(QStringLiteral("label_13"));
+        label_13->setGeometry(QRect(370, 300, 31, 20));
         QWidget::setTabOrder(userLineEdit, pwdLineEdit);
         QWidget::setTabOrder(pwdLineEdit, pwdLineEdit2);
         QWidget::setTabOrder(pwdLineEdit2, realLineEdit);
@@ -166,29 +170,30 @@ public:
     {
         Register->setWindowTitle(QApplication::translate("Register", "Register", Q_NULLPTR));
         pwdLineEdit->setPlaceholderText(QString());
-        exitBtn->setText(QApplication::translate("Register", "Back", Q_NULLPTR));
-        label_3->setText(QApplication::translate("Register", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
-        label->setText(QApplication::translate("Register", "Username:", Q_NULLPTR));
+        exitBtn->setText(QApplication::translate("Register", "\350\277\224\345\233\236", Q_NULLPTR));
+        label_3->setText(QApplication::translate("Register", "\346\263\250\345\206\214", Q_NULLPTR));
+        label->setText(QApplication::translate("Register", "\347\224\250\346\210\267\345\220\215:", Q_NULLPTR));
         userLineEdit->setPlaceholderText(QString());
-        label_2->setText(QApplication::translate("Register", "Password:", Q_NULLPTR));
-        regBtn->setText(QApplication::translate("Register", "Register", Q_NULLPTR));
-        label_4->setText(QApplication::translate("Register", "Password Aagin:", Q_NULLPTR));
+        label_2->setText(QApplication::translate("Register", "\345\257\206\347\240\201:", Q_NULLPTR));
+        regBtn->setText(QApplication::translate("Register", "\346\263\250\345\206\214", Q_NULLPTR));
+        label_4->setText(QApplication::translate("Register", "\345\206\215\346\254\241\350\276\223\345\205\245\345\257\206\347\240\201:", Q_NULLPTR));
         pwdLineEdit2->setPlaceholderText(QString());
-        label_5->setText(QApplication::translate("Register", "Realname:", Q_NULLPTR));
-        label_6->setText(QApplication::translate("Register", "Phone:", Q_NULLPTR));
-        label_7->setText(QApplication::translate("Register", "Email:", Q_NULLPTR));
-        label_8->setText(QApplication::translate("Register", "Motto:", Q_NULLPTR));
-        label_9->setText(QApplication::translate("Register", "Gender:", Q_NULLPTR));
+        label_5->setText(QApplication::translate("Register", "\347\234\237\345\256\236\345\247\223\345\220\215:", Q_NULLPTR));
+        label_6->setText(QApplication::translate("Register", "\347\224\265\350\257\235:", Q_NULLPTR));
+        label_7->setText(QApplication::translate("Register", "\351\202\256\347\256\261:", Q_NULLPTR));
+        label_8->setText(QApplication::translate("Register", "\344\270\252\346\200\247\347\255\276\345\220\215:", Q_NULLPTR));
+        label_9->setText(QApplication::translate("Register", "\346\200\247\345\210\253:", Q_NULLPTR));
         realLineEdit->setPlaceholderText(QString());
         phoneLineEdit->setPlaceholderText(QString());
         emailLineEdit->setPlaceholderText(QString());
         mottoLineEdit->setPlaceholderText(QString());
-        maleRadioBtn->setText(QApplication::translate("Register", "Male", Q_NULLPTR));
-        femaleRadioBtn->setText(QApplication::translate("Register", "Female", Q_NULLPTR));
-        elseRadioBtn->setText(QApplication::translate("Register", "Else", Q_NULLPTR));
+        maleRadioBtn->setText(QApplication::translate("Register", "\347\224\267", Q_NULLPTR));
+        femaleRadioBtn->setText(QApplication::translate("Register", "\345\245\263", Q_NULLPTR));
+        elseRadioBtn->setText(QApplication::translate("Register", "\345\205\266\344\273\226", Q_NULLPTR));
         label_10->setText(QApplication::translate("Register", "*", Q_NULLPTR));
         label_11->setText(QApplication::translate("Register", "*", Q_NULLPTR));
         label_12->setText(QApplication::translate("Register", "*", Q_NULLPTR));
+        label_13->setText(QApplication::translate("Register", "*", Q_NULLPTR));
     } // retranslateUi
 
 };

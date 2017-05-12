@@ -57,7 +57,7 @@ public:
         modify->resize(400, 460);
         label_3 = new QLabel(modify);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(80, 30, 251, 41));
+        label_3->setGeometry(QRect(140, 30, 121, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
@@ -95,7 +95,7 @@ public:
         label->setGeometry(QRect(40, 90, 91, 16));
         elseRadioBtn = new QRadioButton(modify);
         elseRadioBtn->setObjectName(QStringLiteral("elseRadioBtn"));
-        elseRadioBtn->setGeometry(QRect(310, 330, 61, 19));
+        elseRadioBtn->setGeometry(QRect(280, 330, 61, 19));
         elseRadioBtn->setChecked(false);
         maleRadioBtn = new QRadioButton(modify);
         maleRadioBtn->setObjectName(QStringLiteral("maleRadioBtn"));
@@ -107,7 +107,7 @@ public:
         emailLineEdit->setClearButtonEnabled(false);
         label_2 = new QLabel(modify);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(40, 150, 121, 16));
+        label_2->setGeometry(QRect(40, 150, 141, 16));
         mottoLineEdit = new QLineEdit(modify);
         mottoLineEdit->setObjectName(QStringLiteral("mottoLineEdit"));
         mottoLineEdit->setGeometry(QRect(190, 300, 151, 21));
@@ -167,30 +167,30 @@ public:
     void retranslateUi(QDialog *modify)
     {
         modify->setWindowTitle(QApplication::translate("modify", "Dialog", Q_NULLPTR));
-        label_3->setText(QApplication::translate("modify", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
-        exitBtn->setText(QApplication::translate("modify", "Back", Q_NULLPTR));
+        label_3->setText(QApplication::translate("modify", "\344\277\256\346\224\271\344\277\241\346\201\257", Q_NULLPTR));
+        exitBtn->setText(QApplication::translate("modify", "\350\277\224\345\233\236", Q_NULLPTR));
         npwdLineEdit2->setPlaceholderText(QString());
-        regBtn->setText(QApplication::translate("modify", "Modify", Q_NULLPTR));
+        regBtn->setText(QApplication::translate("modify", "\344\277\256\346\224\271", Q_NULLPTR));
         phoneLineEdit->setPlaceholderText(QString());
-        femaleRadioBtn->setText(QApplication::translate("modify", "Female", Q_NULLPTR));
+        femaleRadioBtn->setText(QApplication::translate("modify", "\345\245\263", Q_NULLPTR));
         npwdLineEdit->setPlaceholderText(QString());
-        label_9->setText(QApplication::translate("modify", "Gender:", Q_NULLPTR));
-        label->setText(QApplication::translate("modify", "Username:", Q_NULLPTR));
-        elseRadioBtn->setText(QApplication::translate("modify", "Else", Q_NULLPTR));
-        maleRadioBtn->setText(QApplication::translate("modify", "Male", Q_NULLPTR));
+        label_9->setText(QApplication::translate("modify", "\346\200\247\345\210\253:", Q_NULLPTR));
+        label->setText(QApplication::translate("modify", "\347\224\250\346\210\267\345\220\215:", Q_NULLPTR));
+        elseRadioBtn->setText(QApplication::translate("modify", "\345\205\266\344\273\226", Q_NULLPTR));
+        maleRadioBtn->setText(QApplication::translate("modify", "\347\224\267", Q_NULLPTR));
         emailLineEdit->setPlaceholderText(QString());
-        label_2->setText(QApplication::translate("modify", "New Password:", Q_NULLPTR));
+        label_2->setText(QApplication::translate("modify", "\346\226\260\345\257\206\347\240\201(\344\270\215\344\277\256\346\224\271\347\225\231\347\251\272):", Q_NULLPTR));
         mottoLineEdit->setPlaceholderText(QString());
-        label_4->setText(QApplication::translate("modify", "NewPassword Again:", Q_NULLPTR));
-        label_7->setText(QApplication::translate("modify", "Email:", Q_NULLPTR));
-        label_6->setText(QApplication::translate("modify", "Phone:", Q_NULLPTR));
-        label_8->setText(QApplication::translate("modify", "Motto:", Q_NULLPTR));
-        label_5->setText(QApplication::translate("modify", "Realname:", Q_NULLPTR));
+        label_4->setText(QApplication::translate("modify", "\345\206\215\346\254\241\350\276\223\345\205\245\346\226\260\345\257\206\347\240\201:", Q_NULLPTR));
+        label_7->setText(QApplication::translate("modify", "\351\202\256\347\256\261:", Q_NULLPTR));
+        label_6->setText(QApplication::translate("modify", "\347\224\265\350\257\235:", Q_NULLPTR));
+        label_8->setText(QApplication::translate("modify", "\344\270\252\346\200\247\347\255\276\345\220\215:", Q_NULLPTR));
+        label_5->setText(QApplication::translate("modify", "\347\234\237\345\256\236\345\247\223\345\220\215:", Q_NULLPTR));
         realLineEdit->setText(QString());
         realLineEdit->setPlaceholderText(QString());
         pwdLineEdit->setPlaceholderText(QString());
         label_13->setText(QApplication::translate("modify", "*", Q_NULLPTR));
-        label_10->setText(QApplication::translate("modify", "Password:", Q_NULLPTR));
+        label_10->setText(QApplication::translate("modify", "\345\257\206\347\240\201:", Q_NULLPTR));
         userLabel->setText(QApplication::translate("modify", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
