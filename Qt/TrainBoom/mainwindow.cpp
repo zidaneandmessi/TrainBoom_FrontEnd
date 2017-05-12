@@ -10,6 +10,7 @@
 #include "qtablewidget.h"
 #include <Qstring>
 #include "qnetwork.h"
+#include "user.h"
 #include <QUrl>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
@@ -38,6 +39,7 @@ void MainWindow::setUI()
         ui->welcomeLabel->setText("欢迎尊贵的管理员用户" + usrInfo["username"].toString() + "!");
     else
         ui->welcomeLabel->setText("欢迎, " + usrInfo["username"].toString() + "!");
+    ui->tableWidget->setRowCount(0);
 }
 
 void MainWindow::receiveUser(QJsonObject t)
@@ -188,25 +190,63 @@ void MainWindow::on_orderButton_clicked()
 
 void MainWindow::on_startButton_clicked()
 {
-    if(usrInfo["isRoot"] == false)
+    if (usrInfo["isRoot"] == false)
         QMessageBox::warning(this, tr("Warning!"), tr("你没有权限!!!"), QMessageBox::Yes);
-    else if (!ui->tableWidget->selectedItems().size())
-        QMessageBox::warning(this, tr("Warning!"), tr("请选择车票!!!"), QMessageBox::Yes);
     else
     {
-
+        int no = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
+        QString id = routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["routeId"].toString();
+        QNetworkRequest startRequest;
+        startRequest.setUrl(QUrl(website+"/routes/"+id+"/start"));
+        startRequest.setRawHeader("Content-Type", "application/json");
+        startRequest.setRawHeader("Cache-Control", "no-cache");
+        QNetworkAccessManager *startManager=new QNetworkAccessManager;
+        QNetworkReply *startReply = startManager->get(startRequest);
+        QEventLoop ev;
+        connect(startReply, SIGNAL(finished()), &ev, SLOT(quit()));
+        ev.exec(QEventLoop::ExcludeUserInputEvents);
+        QByteArray bt = startReply->readAll();
+        QJsonObject res = QJsonDocument::fromJson(bt).object();
+        if (res["type"].toString() == "success")
+            QMessageBox::warning(this, tr("Warning!"), tr("开始发售成功!!!"), QMessageBox::Yes);
+        else
+            QMessageBox::warning(this, tr("Warning!"), tr("开始发售失败!!!"), QMessageBox::Yes);
     }
 }
 
 
 void MainWindow::on_stopButton_clicked()
 {
-    if(usrInfo["isRoot"] == false)
+    if (usrInfo["isRoot"] == false)
         QMessageBox::warning(this, tr("Warning!"), tr("你没有权限!!!"), QMessageBox::Yes);
     else if (!ui->tableWidget->selectedItems().size())
         QMessageBox::warning(this, tr("Warning!"), tr("请选择车票!!!"), QMessageBox::Yes);
+
     else
     {
+        int no = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
+        QString id = routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["routeId"].toString();
+        QNetworkRequest startRequest;
+        startRequest.setUrl(QUrl(website+"/routes/"+id+"/stop"));
+        startRequest.setRawHeader("Content-Type", "application/json");
+        startRequest.setRawHeader("Cache-Control", "no-cache");
+        QNetworkAccessManager *startManager=new QNetworkAccessManager;
+        QNetworkReply *startReply = startManager->get(startRequest);
+        QEventLoop ev;
+        connect(startReply, SIGNAL(finished()), &ev, SLOT(quit()));
+        ev.exec(QEventLoop::ExcludeUserInputEvents);
+        QByteArray bt = startReply->readAll();
+        QJsonObject res = QJsonDocument::fromJson(bt).object();
+        if (res["type"].toString() == "success")
+            QMessageBox::warning(this, tr("Warning!"), tr("停止出售成功!!!"), QMessageBox::Yes);
+        else
+            QMessageBox::warning(this, tr("Warning!"), tr("停止出售失败!!!"), QMessageBox::Yes);
 
     }
+}
+
+void MainWindow::on_pushButton_2_clicked()//查询用户
+{
+    User *w = new User;
+    w->exec();
 }

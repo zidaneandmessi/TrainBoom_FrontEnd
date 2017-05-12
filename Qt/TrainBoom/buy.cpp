@@ -105,7 +105,7 @@ void Buy::on_pushButton_clicked()
         res = QJsonDocument::fromJson(bt).object();
 
         if(res["type"] == "error")
-            QMessageBox::warning(this, tr("Warning!"), tr("车票数量不足!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("订票失败!!!"), QMessageBox::Yes);
         else
         {
             QMessageBox::warning(this, tr("Warning!"), tr("订票成功!!!"), QMessageBox::Yes);
@@ -113,4 +113,9 @@ void Buy::on_pushButton_clicked()
             accept();
         }
     }
+}
+
+void Buy::on_pushButton_2_clicked()
+{
+    this->close();
 }

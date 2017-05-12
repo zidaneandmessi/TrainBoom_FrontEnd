@@ -44,6 +44,7 @@ public:
     QPushButton *orderButton;
     QLabel *welcomeLabel;
     QPushButton *stopButton;
+    QPushButton *pushButton_2;
     QMenuBar *menuBar;
     QMenu *menu_U;
     QMenu *menu_H;
@@ -54,7 +55,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(886, 615);
+        MainWindow->resize(886, 623);
         MainWindow->setCursor(QCursor(Qt::ArrowCursor));
         action_UM = new QAction(MainWindow);
         action_UM->setObjectName(QStringLiteral("action_UM"));
@@ -68,7 +69,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(170, 500, 641, 31));
+        pushButton->setGeometry(QRect(170, 490, 641, 31));
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setGeometry(QRect(320, 20, 240, 31));
@@ -78,7 +79,7 @@ public:
         label_3->setFont(font);
         queryButton = new QPushButton(centralWidget);
         queryButton->setObjectName(QStringLiteral("queryButton"));
-        queryButton->setGeometry(QRect(40, 80, 93, 28));
+        queryButton->setGeometry(QRect(40, 80, 101, 28));
         tableWidget = new QTableWidget(centralWidget);
         if (tableWidget->columnCount() < 6)
             tableWidget->setColumnCount(6);
@@ -99,20 +100,23 @@ public:
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         progressBar = new QProgressBar(centralWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(170, 470, 681, 23));
+        progressBar->setGeometry(QRect(170, 460, 681, 23));
         progressBar->setValue(24);
         startButton = new QPushButton(centralWidget);
         startButton->setObjectName(QStringLiteral("startButton"));
-        startButton->setGeometry(QRect(40, 160, 93, 61));
+        startButton->setGeometry(QRect(40, 160, 101, 61));
         orderButton = new QPushButton(centralWidget);
         orderButton->setObjectName(QStringLiteral("orderButton"));
-        orderButton->setGeometry(QRect(40, 120, 93, 28));
+        orderButton->setGeometry(QRect(40, 120, 101, 28));
         welcomeLabel = new QLabel(centralWidget);
         welcomeLabel->setObjectName(QStringLiteral("welcomeLabel"));
-        welcomeLabel->setGeometry(QRect(70, 530, 511, 21));
+        welcomeLabel->setGeometry(QRect(40, 540, 511, 21));
         stopButton = new QPushButton(centralWidget);
         stopButton->setObjectName(QStringLiteral("stopButton"));
-        stopButton->setGeometry(QRect(40, 230, 93, 61));
+        stopButton->setGeometry(QRect(40, 230, 101, 61));
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(40, 300, 101, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -172,10 +176,11 @@ public:
 "\350\257\245\350\275\246\346\254\241\345\275\223\345\244\251\n"
 "\346\211\200\346\234\211\350\275\246\347\245\250", Q_NULLPTR));
         orderButton->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\350\256\242\345\215\225", Q_NULLPTR));
-        welcomeLabel->setText(QString());
-        stopButton->setText(QApplication::translate("MainWindow", "\345\201\234\346\255\242\345\217\221\345\224\256\n"
+        welcomeLabel->setText(QApplication::translate("MainWindow", "\345\225\212\345\225\212\345\225\212", Q_NULLPTR));
+        stopButton->setText(QApplication::translate("MainWindow", "\345\201\234\346\255\242\345\207\272\345\224\256\n"
 "\350\257\245\350\275\246\346\254\241\345\275\223\345\244\251\n"
 "\346\211\200\346\234\211\350\275\246\347\245\250", Q_NULLPTR));
+        pushButton_2->setText(QApplication::translate("MainWindow", "\346\237\245\350\257\242\347\224\250\346\210\267\344\277\241\346\201\257", Q_NULLPTR));
         menu_U->setTitle(QApplication::translate("MainWindow", "\347\224\250\346\210\267(&U)", Q_NULLPTR));
         menu_H->setTitle(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&H)", Q_NULLPTR));
     } // retranslateUi

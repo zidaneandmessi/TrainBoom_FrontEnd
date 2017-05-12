@@ -7,6 +7,7 @@ INPUT(
 ./debug\query.o
 ./debug\order.o
 ./debug\buy.o
+./debug\user.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
 ./debug\moc_register.o
@@ -14,4 +15,5 @@ INPUT(
 ./debug\moc_query.o
 ./debug\moc_order.o
 ./debug\moc_buy.o
+./debug\moc_user.o
 );

@@ -65,7 +65,7 @@ public:
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         pushButton = new QPushButton(Order);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(490, 480, 93, 28));
+        pushButton->setGeometry(QRect(470, 470, 93, 28));
 
         retranslateUi(Order);
 
