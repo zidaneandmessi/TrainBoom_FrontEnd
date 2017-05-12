@@ -29,6 +29,7 @@ Order::Order(QWidget *parent) :
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
+    ui->tableWidget->setSortingEnabled(true);
 }
 
 void Order::receiveUser(QJsonObject t)

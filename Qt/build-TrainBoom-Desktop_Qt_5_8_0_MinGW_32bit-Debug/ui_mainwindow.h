@@ -45,6 +45,8 @@ public:
     QLabel *welcomeLabel;
     QPushButton *stopButton;
     QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
     QMenuBar *menuBar;
     QMenu *menu_U;
     QMenu *menu_H;
@@ -116,7 +118,13 @@ public:
         stopButton->setGeometry(QRect(40, 230, 101, 61));
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(40, 300, 101, 28));
+        pushButton_2->setGeometry(QRect(40, 340, 101, 28));
+        pushButton_3 = new QPushButton(centralWidget);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(40, 300, 101, 28));
+        pushButton_4 = new QPushButton(centralWidget);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(40, 380, 101, 28));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -173,7 +181,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
         ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "\345\211\251\344\275\231\346\225\260\351\207\217", Q_NULLPTR));
         startButton->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\345\217\221\345\224\256\n"
-"\350\257\245\350\275\246\346\254\241\345\275\223\345\244\251\n"
+"\346\237\220\350\275\246\346\254\241\n"
 "\346\211\200\346\234\211\350\275\246\347\245\250", Q_NULLPTR));
         orderButton->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\350\256\242\345\215\225", Q_NULLPTR));
         welcomeLabel->setText(QApplication::translate("MainWindow", "\345\225\212\345\225\212\345\225\212", Q_NULLPTR));
@@ -181,6 +189,8 @@ public:
 "\350\257\245\350\275\246\346\254\241\345\275\223\345\244\251\n"
 "\346\211\200\346\234\211\350\275\246\347\245\250", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("MainWindow", "\346\237\245\350\257\242\347\224\250\346\210\267\344\277\241\346\201\257", Q_NULLPTR));
+        pushButton_3->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\346\237\220\350\275\246\346\254\241", Q_NULLPTR));
+        pushButton_4->setText(QApplication::translate("MainWindow", "\346\237\245\347\234\213\347\263\273\347\273\237\346\227\245\345\277\227", Q_NULLPTR));
         menu_U->setTitle(QApplication::translate("MainWindow", "\347\224\250\346\210\267(&U)", Q_NULLPTR));
         menu_H->setTitle(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&H)", Q_NULLPTR));
     } // retranslateUi

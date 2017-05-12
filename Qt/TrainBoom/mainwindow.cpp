@@ -6,11 +6,13 @@
 #include "query.h"
 #include "order.h"
 #include "buy.h"
+#include "user.h"
+#include "start.h"
+#include "delete.h"
 #include "qjsonarray.h"
 #include "qtablewidget.h"
 #include <Qstring>
 #include "qnetwork.h"
-#include "user.h"
 #include <QUrl>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
@@ -31,6 +33,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
+    ui->tableWidget->setSortingEnabled(true);
     ui->progressBar->hide();
 }
 void MainWindow::setUI()
@@ -100,6 +103,7 @@ void MainWindow::on_queryButton_clicked()
         ui->progressBar->setRange(0, num - 1);
         ui->progressBar->setValue(0);
         ui->tableWidget->setRowCount(0);
+        ui->tableWidget->setSortingEnabled(false);
         if (!num)
             QMessageBox::warning(this, tr("Warning!"), tr("没有找到满足条件的车票!!!"), QMessageBox::Yes);
         else
@@ -153,6 +157,7 @@ void MainWindow::on_queryButton_clicked()
                     ui->tableWidget->show();
                 }
         }
+        ui->tableWidget->setSortingEnabled(true);
         ui->progressBar->hide();
     }
 }
@@ -194,23 +199,8 @@ void MainWindow::on_startButton_clicked()
         QMessageBox::warning(this, tr("Warning!"), tr("你没有权限!!!"), QMessageBox::Yes);
     else
     {
-        int no = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
-        QString id = routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["routeId"].toString();
-        QNetworkRequest startRequest;
-        startRequest.setUrl(QUrl(website+"/routes/"+id+"/start"));
-        startRequest.setRawHeader("Content-Type", "application/json");
-        startRequest.setRawHeader("Cache-Control", "no-cache");
-        QNetworkAccessManager *startManager=new QNetworkAccessManager;
-        QNetworkReply *startReply = startManager->get(startRequest);
-        QEventLoop ev;
-        connect(startReply, SIGNAL(finished()), &ev, SLOT(quit()));
-        ev.exec(QEventLoop::ExcludeUserInputEvents);
-        QByteArray bt = startReply->readAll();
-        QJsonObject res = QJsonDocument::fromJson(bt).object();
-        if (res["type"].toString() == "success")
-            QMessageBox::warning(this, tr("Warning!"), tr("开始发售成功!!!"), QMessageBox::Yes);
-        else
-            QMessageBox::warning(this, tr("Warning!"), tr("开始发售失败!!!"), QMessageBox::Yes);
+        Start *w = new Start;
+        w->exec();
     }
 }
 
@@ -248,5 +238,11 @@ void MainWindow::on_stopButton_clicked()
 void MainWindow::on_pushButton_2_clicked()//查询用户
 {
     User *w = new User;
+    w->exec();
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    Delete *w = new Delete;
     w->exec();
 }

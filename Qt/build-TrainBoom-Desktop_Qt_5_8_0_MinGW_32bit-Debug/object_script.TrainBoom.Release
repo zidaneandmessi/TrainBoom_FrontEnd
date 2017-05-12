@@ -8,6 +8,8 @@ INPUT(
 ./release\order.o
 ./release\buy.o
 ./release\user.o
+./release\start.o
+./release\delete.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
 ./release\moc_register.o
@@ -16,4 +18,6 @@ INPUT(
 ./release\moc_order.o
 ./release\moc_buy.o
 ./release\moc_user.o
+./release\moc_start.o
+./release\moc_delete.o
 );

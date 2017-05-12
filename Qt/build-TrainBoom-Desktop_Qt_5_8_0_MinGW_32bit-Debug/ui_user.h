@@ -100,21 +100,21 @@ public:
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(480, 80, 611, 371));
+        tableWidget->setGeometry(QRect(450, 80, 641, 371));
         tableWidget->setLayoutDirection(Qt::LeftToRight);
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         realName = new QLabel(User);
         realName->setObjectName(QStringLiteral("realName"));
-        realName->setGeometry(QRect(119, 210, 341, 21));
+        realName->setGeometry(QRect(119, 210, 321, 21));
         phone = new QLabel(User);
         phone->setObjectName(QStringLiteral("phone"));
-        phone->setGeometry(QRect(119, 240, 341, 21));
+        phone->setGeometry(QRect(119, 240, 321, 21));
         email = new QLabel(User);
         email->setObjectName(QStringLiteral("email"));
-        email->setGeometry(QRect(119, 270, 341, 21));
+        email->setGeometry(QRect(119, 270, 321, 21));
         motto = new QLabel(User);
         motto->setObjectName(QStringLiteral("motto"));
-        motto->setGeometry(QRect(119, 300, 341, 21));
+        motto->setGeometry(QRect(119, 300, 321, 21));
         sex = new QLabel(User);
         sex->setObjectName(QStringLiteral("sex"));
         sex->setGeometry(QRect(120, 330, 121, 21));
@@ -126,7 +126,7 @@ public:
         label_2->setGeometry(QRect(40, 180, 61, 16));
         userName = new QLabel(User);
         userName->setObjectName(QStringLiteral("userName"));
-        userName->setGeometry(QRect(120, 180, 341, 21));
+        userName->setGeometry(QRect(120, 180, 321, 21));
 
         retranslateUi(User);
 

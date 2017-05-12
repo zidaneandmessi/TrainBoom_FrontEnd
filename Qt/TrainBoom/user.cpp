@@ -32,16 +32,17 @@ User::User(QWidget *parent) :
     ui->email->setAlignment(Qt::AlignTop);
     ui->motto->setWordWrap(true);
     ui->motto->setAlignment(Qt::AlignTop);
-}
-
-User::~User()
-{
-    delete ui;
     for(int i = 0; i < 8; i++)
         ui->tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
     ui->tableWidget->setAlternatingRowColors(true);
+    ui->tableWidget->setSortingEnabled(true);
+}
+
+User::~User()
+{
+    delete ui;
 }
 
 void User::on_pushButton_2_clicked()

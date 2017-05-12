@@ -32,7 +32,9 @@ SOURCES += main.cpp\
     query.cpp \
     order.cpp \
     buy.cpp \
-    user.cpp
+    user.cpp \
+    start.cpp \
+    delete.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
@@ -41,7 +43,9 @@ HEADERS  += mainwindow.h \
     query.h \
     order.h \
     buy.h \
-    user.h
+    user.h \
+    start.h \
+    delete.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
@@ -50,6 +54,8 @@ FORMS    += mainwindow.ui \
     query.ui \
     order.ui \
     buy.ui \
-    user.ui
+    user.ui \
+    start.ui \
+    delete.ui
 
 RC_ICONS = icon.ico

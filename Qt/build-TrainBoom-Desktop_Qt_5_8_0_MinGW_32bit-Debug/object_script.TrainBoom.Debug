@@ -8,6 +8,8 @@ INPUT(
 ./debug\order.o
 ./debug\buy.o
 ./debug\user.o
+./debug\start.o
+./debug\delete.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
 ./debug\moc_register.o
@@ -16,4 +18,6 @@ INPUT(
 ./debug\moc_order.o
 ./debug\moc_buy.o
 ./debug\moc_user.o
+./debug\moc_start.o
+./debug\moc_delete.o
 );

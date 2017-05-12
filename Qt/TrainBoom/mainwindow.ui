@@ -129,7 +129,7 @@
     </property>
     <property name="text">
      <string>开始发售
-该车次当天
+某车次
 所有车票</string>
     </property>
    </widget>
@@ -178,13 +178,39 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>300</y>
+      <y>340</y>
       <width>101</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
      <string>查询用户信息</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>300</y>
+      <width>101</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>删除某车次</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>380</y>
+      <width>101</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>查看系统日志</string>
     </property>
    </widget>
   </widget>
