@@ -30,20 +30,23 @@ SOURCES += main.cpp\
     register.cpp \
     modify.cpp \
     admin.cpp \
-    query.cpp
+    query.cpp \
+    order.cpp
 
 HEADERS  += mainwindow.h \
     logindialog.h \
     register.h \
     modify.h \
     admin.h \
-    query.h
+    query.h \
+    order.h
 
 FORMS    += mainwindow.ui \
     logindialog.ui \
     register.ui \
     modify.ui \
     admin.ui \
-    query.ui
+    query.ui \
+    order.ui
 
 RC_ICONS = icon.ico

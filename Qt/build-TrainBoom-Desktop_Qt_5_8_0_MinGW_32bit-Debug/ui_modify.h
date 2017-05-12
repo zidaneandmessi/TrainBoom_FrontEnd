@@ -57,7 +57,7 @@ public:
         modify->resize(400, 460);
         label_3 = new QLabel(modify);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(140, 30, 121, 41));
+        label_3->setGeometry(QRect(140, 20, 121, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);

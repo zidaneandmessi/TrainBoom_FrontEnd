@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     if (dlg.exec() == QDialog::Accepted)
     {
         w.receiveUser(dlg.sendUser());
+        w.setUI();
         w.show();
         return a.exec();
     }

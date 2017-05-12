@@ -65,7 +65,7 @@ void LoginDialog::on_loginBtn_clicked()
     QByteArray bt = chkusrReply->readAll();
     QJsonObject res = QJsonDocument::fromJson(bt).object();
     if (res["type"] == "error") id = QString("");
-    else id = res["data"].toObject()["userId"].toString();
+    else id = res["userId"].toString();
 
 
     if (id.isEmpty())

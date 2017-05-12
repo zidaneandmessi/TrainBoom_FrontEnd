@@ -18,6 +18,7 @@ public:
     void receiveUser(QJsonObject t);
     void receiveRoutes(QJsonObject t);
     QJsonObject sendUser();
+    void setUI();
 
 private slots:
     void on_action_UL_triggered();
@@ -26,6 +27,8 @@ private slots:
     void on_queryButton_clicked();
 
     void on_pushButton_clicked();
+
+    void on_orderButton_clicked();
 
 private:
     Ui::MainWindow *ui;

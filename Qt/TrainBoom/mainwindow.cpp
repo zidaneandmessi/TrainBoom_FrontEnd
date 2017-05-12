@@ -5,6 +5,7 @@
 #include "modify.h"
 #include "admin.h"
 #include "query.h"
+#include "order.h"
 #include "qjsonarray.h"
 #include "qtablewidget.h"
 #include <Qstring>
@@ -33,6 +34,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->noLineEdit->setValidator(new QRegExpValidator(regExp, this));
     ui->numLineEdit->setValidator(new QRegExpValidator(regExp, this));
 }
+void MainWindow::setUI()
+{
+    ui->welcomeLabel->setText("Welcome, " + usrInfo["username"].toString() + "!");
+}
+
 void MainWindow::receiveUser(QJsonObject t)
 {
     usrInfo = t;
@@ -160,7 +166,7 @@ void MainWindow::on_pushButton_clicked()
     int rows = ui->tableWidget->rowCount();
     int no = ui->noLineEdit->text().toInt(), num = ui->numLineEdit->text().toInt();
     if (no <= 0 || no > rows)
-        QMessageBox::warning(this, tr("Warning!"), tr("没有找到满足条件的车票!!!"), QMessageBox::Yes);
+        QMessageBox::warning(this, tr("Warning!"), tr("序号不合法!!!"), QMessageBox::Yes);
     else if (num <= 0)
         QMessageBox::warning(this, tr("Warning!"), tr("数量不合法!!!"), QMessageBox::Yes);
     else
@@ -180,7 +186,7 @@ void MainWindow::on_pushButton_clicked()
         QByteArray bt = chkusrReply->readAll();
         QJsonObject res = QJsonDocument::fromJson(bt).object();
         if (res["type"] == "error") id = QString("");
-        else id = res["data"].toObject()["userId"].toString();
+        else id = res["userId"].toString();
 
         QJsonObject t2;
         t2.insert("l", routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["l"].toInt());
@@ -208,4 +214,12 @@ void MainWindow::on_pushButton_clicked()
             ui->tableWidget->setItem(no - 1, 5, new QTableWidgetItem(QString::number(t, 10)));
         }
     }
+}
+
+void MainWindow::on_orderButton_clicked()
+{
+    Order *w = new Order;
+    w->receiveUser(this->sendUser());
+    w->setUI();
+    w->exec();
 }

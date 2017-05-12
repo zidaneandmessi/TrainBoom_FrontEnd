@@ -13,7 +13,6 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -37,10 +36,6 @@ public:
     QAction *action_UQ;
     QAction *action_HA;
     QWidget *centralWidget;
-    QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout;
-    QWidget *horizontalLayoutWidget_2;
-    QHBoxLayout *horizontalLayout_2;
     QPushButton *pushButton;
     QLineEdit *numLineEdit;
     QLabel *label;
@@ -51,6 +46,8 @@ public:
     QLabel *label_2;
     QLineEdit *noLineEdit;
     QPushButton *adminButton;
+    QPushButton *orderButton;
+    QLabel *welcomeLabel;
     QMenuBar *menuBar;
     QMenu *menu_U;
     QMenu *menu_H;
@@ -61,7 +58,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(949, 630);
+        MainWindow->resize(949, 615);
         action_UM = new QAction(MainWindow);
         action_UM->setObjectName(QStringLiteral("action_UM"));
         action_UL = new QAction(MainWindow);
@@ -72,41 +69,25 @@ public:
         action_HA->setObjectName(QStringLiteral("action_HA"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        horizontalLayoutWidget = new QWidget(centralWidget);
-        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(777, 517, 16, 16));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayoutWidget_2 = new QWidget(centralWidget);
-        horizontalLayoutWidget_2->setObjectName(QStringLiteral("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(777, 526, 16, 16));
-        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(630, 520, 61, 21));
+        pushButton->setGeometry(QRect(850, 520, 61, 21));
         numLineEdit = new QLineEdit(centralWidget);
         numLineEdit->setObjectName(QStringLiteral("numLineEdit"));
-        numLineEdit->setGeometry(QRect(550, 520, 41, 21));
+        numLineEdit->setGeometry(QRect(770, 520, 41, 21));
         label = new QLabel(centralWidget);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(500, 520, 38, 21));
+        label->setGeometry(QRect(720, 520, 38, 21));
         label_3 = new QLabel(centralWidget);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(270, 20, 240, 31));
+        label_3->setGeometry(QRect(350, 20, 240, 31));
         QFont font;
         font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
         label_3->setFont(font);
         queryButton = new QPushButton(centralWidget);
         queryButton->setObjectName(QStringLiteral("queryButton"));
-        queryButton->setGeometry(QRect(20, 100, 93, 28));
+        queryButton->setGeometry(QRect(40, 110, 93, 28));
         tableWidget = new QTableWidget(centralWidget);
         if (tableWidget->columnCount() < 6)
             tableWidget->setColumnCount(6);
@@ -123,35 +104,40 @@ public:
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(170, 70, 771, 371));
+        tableWidget->setGeometry(QRect(170, 80, 741, 371));
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         progressBar = new QProgressBar(centralWidget);
         progressBar->setObjectName(QStringLiteral("progressBar"));
-        progressBar->setGeometry(QRect(390, 460, 341, 23));
+        progressBar->setGeometry(QRect(170, 470, 781, 23));
         progressBar->setValue(24);
         label_2 = new QLabel(centralWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(390, 520, 41, 21));
+        label_2->setGeometry(QRect(610, 520, 41, 21));
         noLineEdit = new QLineEdit(centralWidget);
         noLineEdit->setObjectName(QStringLiteral("noLineEdit"));
-        noLineEdit->setGeometry(QRect(440, 520, 41, 21));
+        noLineEdit->setGeometry(QRect(660, 520, 41, 21));
         adminButton = new QPushButton(centralWidget);
         adminButton->setObjectName(QStringLiteral("adminButton"));
-        adminButton->setGeometry(QRect(20, 390, 93, 28));
+        adminButton->setGeometry(QRect(40, 190, 93, 28));
+        orderButton = new QPushButton(centralWidget);
+        orderButton->setObjectName(QStringLiteral("orderButton"));
+        orderButton->setGeometry(QRect(40, 150, 93, 28));
+        welcomeLabel = new QLabel(centralWidget);
+        welcomeLabel->setObjectName(QStringLiteral("welcomeLabel"));
+        welcomeLabel->setGeometry(QRect(10, 530, 511, 21));
         MainWindow->setCentralWidget(centralWidget);
-        horizontalLayoutWidget->raise();
-        horizontalLayoutWidget_2->raise();
         pushButton->raise();
         numLineEdit->raise();
         label->raise();
         label_3->raise();
-        adminButton->raise();
         queryButton->raise();
         tableWidget->raise();
         progressBar->raise();
         adminButton->raise();
         label_2->raise();
         noLineEdit->raise();
+        orderButton->raise();
+        welcomeLabel->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 949, 26));
@@ -166,6 +152,11 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        QWidget::setTabOrder(queryButton, adminButton);
+        QWidget::setTabOrder(adminButton, tableWidget);
+        QWidget::setTabOrder(tableWidget, noLineEdit);
+        QWidget::setTabOrder(noLineEdit, numLineEdit);
+        QWidget::setTabOrder(numLineEdit, pushButton);
 
         menuBar->addAction(menu_U->menuAction());
         menuBar->addAction(menu_H->menuAction());
@@ -207,6 +198,8 @@ public:
         ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "\345\211\251\344\275\231\346\225\260\351\207\217", Q_NULLPTR));
         label_2->setText(QApplication::translate("MainWindow", "\345\272\217\345\217\267:", Q_NULLPTR));
         adminButton->setText(QApplication::translate("MainWindow", "\347\256\241\347\220\206\347\263\273\347\273\237", Q_NULLPTR));
+        orderButton->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\350\256\242\345\215\225", Q_NULLPTR));
+        welcomeLabel->setText(QString());
         menu_U->setTitle(QApplication::translate("MainWindow", "\347\224\250\346\210\267(&U)", Q_NULLPTR));
         menu_H->setTitle(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&H)", Q_NULLPTR));
     } // retranslateUi

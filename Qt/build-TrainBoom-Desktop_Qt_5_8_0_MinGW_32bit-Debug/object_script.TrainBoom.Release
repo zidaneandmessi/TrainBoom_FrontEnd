@@ -6,10 +6,12 @@ INPUT(
 ./release\modify.o
 ./release\admin.o
 ./release\query.o
+./release\order.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
 ./release\moc_register.o
 ./release\moc_modify.o
 ./release\moc_admin.o
 ./release\moc_query.o
+./release\moc_order.o
 );

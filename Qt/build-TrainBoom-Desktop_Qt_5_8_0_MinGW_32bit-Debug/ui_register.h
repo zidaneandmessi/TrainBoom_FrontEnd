@@ -66,7 +66,7 @@ public:
         exitBtn->setGeometry(QRect(210, 350, 93, 28));
         label_3 = new QLabel(Register);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(170, 30, 61, 41));
+        label_3->setGeometry(QRect(170, 20, 61, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
