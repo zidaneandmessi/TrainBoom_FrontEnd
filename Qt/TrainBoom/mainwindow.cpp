@@ -9,6 +9,7 @@
 #include "user.h"
 #include "start.h"
 #include "delete.h"
+#include "add.h"
 #include "qjsonarray.h"
 #include "qtablewidget.h"
 #include <Qstring>
@@ -237,12 +238,33 @@ void MainWindow::on_stopButton_clicked()
 
 void MainWindow::on_pushButton_2_clicked()//查询用户
 {
-    User *w = new User;
-    w->exec();
+    if (usrInfo["isRoot"] == false)
+        QMessageBox::warning(this, tr("Warning!"), tr("你没有权限!!!"), QMessageBox::Yes);
+    else
+    {
+        User *w = new User;
+        w->exec();
+    }
 }
 
 void MainWindow::on_pushButton_3_clicked()
 {
-    Delete *w = new Delete;
-    w->exec();
+    if (usrInfo["isRoot"] == false)
+        QMessageBox::warning(this, tr("Warning!"), tr("你没有权限!!!"), QMessageBox::Yes);
+    else
+    {
+        Delete *w = new Delete;
+        w->exec();
+    }
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    if (usrInfo["isRoot"] == false)
+        QMessageBox::warning(this, tr("Warning!"), tr("你没有权限!!!"), QMessageBox::Yes);
+    else
+    {
+        Add *w = new Add;
+        w->exec();
+    }
 }

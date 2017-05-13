@@ -34,6 +34,10 @@ public:
     QAction *action_UL;
     QAction *action_UQ;
     QAction *action_HA;
+    QAction *actionfootoredo;
+    QAction *actionzidaneandmessi;
+    QAction *actionWillYoung;
+    QAction *actionCreeperLin;
     QWidget *centralWidget;
     QPushButton *pushButton;
     QLabel *label_3;
@@ -47,6 +51,7 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
     QMenuBar *menuBar;
     QMenu *menu_U;
     QMenu *menu_H;
@@ -67,6 +72,14 @@ public:
         action_UQ->setObjectName(QStringLiteral("action_UQ"));
         action_HA = new QAction(MainWindow);
         action_HA->setObjectName(QStringLiteral("action_HA"));
+        actionfootoredo = new QAction(MainWindow);
+        actionfootoredo->setObjectName(QStringLiteral("actionfootoredo"));
+        actionzidaneandmessi = new QAction(MainWindow);
+        actionzidaneandmessi->setObjectName(QStringLiteral("actionzidaneandmessi"));
+        actionWillYoung = new QAction(MainWindow);
+        actionWillYoung->setObjectName(QStringLiteral("actionWillYoung"));
+        actionCreeperLin = new QAction(MainWindow);
+        actionCreeperLin->setObjectName(QStringLiteral("actionCreeperLin"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         pushButton = new QPushButton(centralWidget);
@@ -118,13 +131,16 @@ public:
         stopButton->setGeometry(QRect(40, 230, 101, 61));
         pushButton_2 = new QPushButton(centralWidget);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(40, 340, 101, 28));
+        pushButton_2->setGeometry(QRect(40, 390, 101, 28));
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(40, 300, 101, 28));
+        pushButton_3->setGeometry(QRect(40, 350, 101, 28));
         pushButton_4 = new QPushButton(centralWidget);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(40, 380, 101, 28));
+        pushButton_4->setGeometry(QRect(40, 430, 101, 28));
+        pushButton_5 = new QPushButton(centralWidget);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(40, 300, 101, 41));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -151,6 +167,11 @@ public:
         menu_U->addAction(action_UL);
         menu_U->addAction(action_UQ);
         menu_H->addAction(action_HA);
+        menu_H->addSeparator();
+        menu_H->addAction(actionfootoredo);
+        menu_H->addAction(actionzidaneandmessi);
+        menu_H->addAction(actionWillYoung);
+        menu_H->addAction(actionCreeperLin);
 
         retranslateUi(MainWindow);
         QObject::connect(action_UQ, SIGNAL(triggered()), MainWindow, SLOT(close()));
@@ -164,7 +185,11 @@ public:
         action_UM->setText(QApplication::translate("MainWindow", "\344\277\256\346\224\271(M)", Q_NULLPTR));
         action_UL->setText(QApplication::translate("MainWindow", "\346\263\250\351\224\200(&L)", Q_NULLPTR));
         action_UQ->setText(QApplication::translate("MainWindow", "\351\200\200\345\207\272(&Q)", Q_NULLPTR));
-        action_HA->setText(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", Q_NULLPTR));
+        action_HA->setText(QApplication::translate("MainWindow", "Powered by", Q_NULLPTR));
+        actionfootoredo->setText(QApplication::translate("MainWindow", "footoredo", Q_NULLPTR));
+        actionzidaneandmessi->setText(QApplication::translate("MainWindow", "ZidaneAndMessi", Q_NULLPTR));
+        actionWillYoung->setText(QApplication::translate("MainWindow", "WillYoung", Q_NULLPTR));
+        actionCreeperLin->setText(QApplication::translate("MainWindow", "CreeperLin", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "\350\264\255\344\271\260", Q_NULLPTR));
         label_3->setText(QApplication::translate("MainWindow", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
         queryButton->setText(QApplication::translate("MainWindow", "\346\237\245\350\257\242", Q_NULLPTR));
@@ -191,8 +216,10 @@ public:
         pushButton_2->setText(QApplication::translate("MainWindow", "\346\237\245\350\257\242\347\224\250\346\210\267\344\277\241\346\201\257", Q_NULLPTR));
         pushButton_3->setText(QApplication::translate("MainWindow", "\345\210\240\351\231\244\346\237\220\350\275\246\346\254\241", Q_NULLPTR));
         pushButton_4->setText(QApplication::translate("MainWindow", "\346\237\245\347\234\213\347\263\273\347\273\237\346\227\245\345\277\227", Q_NULLPTR));
+        pushButton_5->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240/\344\277\256\346\224\271\n"
+"\350\275\246\346\254\241", Q_NULLPTR));
         menu_U->setTitle(QApplication::translate("MainWindow", "\347\224\250\346\210\267(&U)", Q_NULLPTR));
-        menu_H->setTitle(QApplication::translate("MainWindow", "\345\270\256\345\212\251(&H)", Q_NULLPTR));
+        menu_H->setTitle(QApplication::translate("MainWindow", "\345\205\263\344\272\216(&A)", Q_NULLPTR));
     } // retranslateUi
 
 };

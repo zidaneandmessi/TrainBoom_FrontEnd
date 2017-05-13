@@ -10,6 +10,7 @@ INPUT(
 ./release\user.o
 ./release\start.o
 ./release\delete.o
+./release\add.o
 ./release\moc_mainwindow.o
 ./release\moc_logindialog.o
 ./release\moc_register.o
@@ -20,4 +21,5 @@ INPUT(
 ./release\moc_user.o
 ./release\moc_start.o
 ./release\moc_delete.o
+./release\moc_add.o
 );

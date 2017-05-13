@@ -32,10 +32,10 @@ public:
     {
         if (Order->objectName().isEmpty())
             Order->setObjectName(QStringLiteral("Order"));
-        Order->resize(655, 529);
+        Order->resize(772, 529);
         label_3 = new QLabel(Order);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(270, 10, 121, 41));
+        label_3->setGeometry(QRect(320, 10, 121, 41));
         QFont font;
         font.setFamily(QString::fromUtf8("\347\255\211\347\272\277"));
         font.setPointSize(18);
@@ -60,12 +60,12 @@ public:
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(20, 70, 611, 371));
+        tableWidget->setGeometry(QRect(20, 70, 721, 371));
         tableWidget->setLayoutDirection(Qt::LeftToRight);
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         pushButton = new QPushButton(Order);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(470, 470, 93, 28));
+        pushButton->setGeometry(QRect(610, 470, 93, 28));
 
         retranslateUi(Order);
 

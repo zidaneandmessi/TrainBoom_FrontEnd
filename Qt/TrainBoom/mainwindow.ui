@@ -178,7 +178,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>340</y>
+      <y>390</y>
       <width>101</width>
       <height>28</height>
      </rect>
@@ -191,7 +191,7 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>300</y>
+      <y>350</y>
       <width>101</width>
       <height>28</height>
      </rect>
@@ -204,13 +204,27 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>380</y>
+      <y>430</y>
       <width>101</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
      <string>查看系统日志</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>300</y>
+      <width>101</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>添加/修改
+车次</string>
     </property>
    </widget>
   </widget>
@@ -234,9 +248,14 @@
    </widget>
    <widget class="QMenu" name="menu_H">
     <property name="title">
-     <string>帮助(&amp;H)</string>
+     <string>关于(&amp;A)</string>
     </property>
     <addaction name="action_HA"/>
+    <addaction name="separator"/>
+    <addaction name="actionfootoredo"/>
+    <addaction name="actionzidaneandmessi"/>
+    <addaction name="actionWillYoung"/>
+    <addaction name="actionCreeperLin"/>
    </widget>
    <addaction name="menu_U"/>
    <addaction name="menu_H"/>
@@ -267,7 +286,27 @@
   </action>
   <action name="action_HA">
    <property name="text">
-    <string>关于(&amp;A)</string>
+    <string>Powered by</string>
+   </property>
+  </action>
+  <action name="actionfootoredo">
+   <property name="text">
+    <string>footoredo</string>
+   </property>
+  </action>
+  <action name="actionzidaneandmessi">
+   <property name="text">
+    <string>ZidaneAndMessi</string>
+   </property>
+  </action>
+  <action name="actionWillYoung">
+   <property name="text">
+    <string>WillYoung</string>
+   </property>
+  </action>
+  <action name="actionCreeperLin">
+   <property name="text">
+    <string>CreeperLin</string>
    </property>
   </action>
  </widget>

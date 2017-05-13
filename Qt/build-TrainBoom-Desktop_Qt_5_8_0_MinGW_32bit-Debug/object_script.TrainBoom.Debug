@@ -10,6 +10,7 @@ INPUT(
 ./debug\user.o
 ./debug\start.o
 ./debug\delete.o
+./debug\add.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
 ./debug\moc_register.o
@@ -20,4 +21,5 @@ INPUT(
 ./debug\moc_user.o
 ./debug\moc_start.o
 ./debug\moc_delete.o
+./debug\moc_add.o
 );
