@@ -8,7 +8,6 @@
 #include "qradiobutton.h"
 #include "qstring.h"
 #include "qurl.h"
-#include "qnetwork.h"
 #include "qtextcodec.h"
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>

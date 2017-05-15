@@ -7,7 +7,6 @@
 #include "qjsonarray.h"
 #include <QCryptographicHash>
 #include <Qstring>
-#include "qnetwork.h"
 #include <QUrl>
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
