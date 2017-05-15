@@ -210,7 +210,7 @@ public:
         QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
         ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "\345\272\217\345\217\267", Q_NULLPTR));
         startButton->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\345\217\221\345\224\256\n"
-"\346\237\220\350\275\246\346\254\241\n"
+"\346\237\220\350\275\246\346\254\241\346\237\220\345\244\251\n"
 "\346\211\200\346\234\211\350\275\246\347\245\250", Q_NULLPTR));
         orderButton->setText(QApplication::translate("MainWindow", "\346\210\221\347\232\204\350\256\242\345\215\225", Q_NULLPTR));
         welcomeLabel->setText(QApplication::translate("MainWindow", "\345\225\212\345\225\212\345\225\212", Q_NULLPTR));

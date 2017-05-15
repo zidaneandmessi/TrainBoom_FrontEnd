@@ -115,10 +115,10 @@ void Buy::on_pushButton_clicked()
         if(res.isEmpty())
             QMessageBox::warning(this, tr("Warning!"), tr("服务器连接失败!!!"), QMessageBox::Yes);
         else if(res["type"] == "error")
-            QMessageBox::warning(this, tr("Warning!"), tr("订票失败!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("订票失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
         else
         {
-            QMessageBox::warning(this, tr("Warning!"), tr("订票成功，您的订单号为")+res["id"].toString()+tr("!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("订票成功，您的订单号为") + res["id"].toString()+tr("!!!"), QMessageBox::Yes);
             Num = num;
             accept();
         }

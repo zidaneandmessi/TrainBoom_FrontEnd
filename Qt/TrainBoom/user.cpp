@@ -65,13 +65,13 @@ void User::on_pushButton_clicked()
     ev.exec(QEventLoop::ExcludeUserInputEvents);
     QByteArray bt = chkusrReply->readAll();
     QJsonObject res = QJsonDocument::fromJson(bt).object();
-    if (res["type"] == "error") id = QString("");
-    else id = res["data"].toObject()["userId"].toString();
-
-    if (id.isEmpty())
-        QMessageBox::warning(this, tr("Warning!"), tr("用户名不存在!!!"), QMessageBox::Yes);
+    if (res.isEmpty())
+        QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+    else if (res["type"] == "error")
+        QMessageBox::warning(this, tr("Warning!"), tr("查询失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
     else
     {
+        id = res["userId"].toString();
         ui->tableWidget->setRowCount(0);
         QNetworkRequest modRequest;
         modRequest.setUrl(QUrl(website+"/users/"+id));
@@ -131,6 +131,7 @@ void User::on_pushButton_clicked()
             QJsonObject t;
             t.insert("l", res["routeInterval"].toObject()["l"].toInt());
             t.insert("r", res["routeInterval"].toObject()["r"].toInt());
+            t.insert("date", res["date"].toString());
             QNetworkRequest queryRequest;
             queryRequest.setUrl(QUrl(website+"/routes/"+res["routeInterval"].toObject()["routeId"].toString()+"/tickets"));
             queryRequest.setRawHeader("Content-Type", "application/json");

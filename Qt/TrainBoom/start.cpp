@@ -19,6 +19,8 @@ Start::Start(QWidget *parent) :
     ui(new Ui::Start)
 {
     ui->setupUi(this);
+    ui->dateEdit->setDisplayFormat("yyyy/M/d");
+    ui->dateEdit->setDate(QDate::currentDate());
 }
 
 Start::~Start()
@@ -50,11 +52,13 @@ void Start::on_pushButton_clicked()
     id = res["routeId"].toString();
 
     QNetworkRequest startRequest;
+    QJsonObject obj;
+    obj.insert("date", ui->dateEdit->text());
     startRequest.setUrl(QUrl(website+"/routes/"+id+"/tickets/start"));
     startRequest.setRawHeader("Content-Type", "application/json");
     startRequest.setRawHeader("Cache-Control", "no-cache");
     QNetworkAccessManager *startManager=new QNetworkAccessManager;
-    QNetworkReply *startReply = startManager->get(startRequest);
+    QNetworkReply *startReply = startManager->post(startRequest, QJsonDocument(obj).toJson());
     connect(startReply, SIGNAL(finished()), &ev, SLOT(quit()));
     ev.exec(QEventLoop::ExcludeUserInputEvents);
     bt = startReply->readAll();
@@ -64,5 +68,8 @@ void Start::on_pushButton_clicked()
     else if (res["type"].toString() == "error")
         QMessageBox::warning(this, tr("Warning!"), tr("开始发售失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
     else if (res["type"].toString() == "success")
+    {
         QMessageBox::warning(this, tr("Warning!"), tr("开始发售成功!!!"), QMessageBox::Yes);
+        accept();
+    }
 }

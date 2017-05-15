@@ -134,7 +134,7 @@
     </property>
     <property name="text">
      <string>开始发售
-某车次
+某车次某天
 所有车票</string>
     </property>
    </widget>
