@@ -18,6 +18,7 @@ public:
     void receiveNo(int t);
     void receiveRoutes(QJsonObject t);
     void receiveTicketType(QString t);
+    void receiveDate(QString t);
     void setUI();
     int sendNum();
     void receivePrice(double t);
@@ -31,7 +32,7 @@ private slots:
 private:
     Ui::Buy *ui;
     QJsonObject usrInfo, routes;
-    QString ticketType;
+    QString ticketType, date;
     int noIndex, Num;
     double price;
 };

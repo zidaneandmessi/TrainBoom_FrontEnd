@@ -29,6 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->tableWidget->hideColumn(6);
     for(int i = 0; i < 6; i++)
         ui->tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -54,6 +55,10 @@ void MainWindow::receiveRoutes(QJsonObject t)
 {
     routes = t;
 }
+void MainWindow::receiveDate(QString t)
+{
+    date = t;
+}
 
 
 MainWindow::~MainWindow()
@@ -68,6 +73,10 @@ QJsonObject MainWindow::sendUser()
 QJsonObject MainWindow::sendRoutes()
 {
     return routes;
+}
+QString MainWindow::sendDate()
+{
+    return date;
 }
 
 void MainWindow::on_action_UL_triggered()
@@ -100,45 +109,37 @@ void MainWindow::on_queryButton_clicked()
     if(w->exec() == QDialog::Accepted)
     {
         receiveRoutes(w->sendRoutes());
+        receiveDate(w->sendDate());
         int num = routes["routeIntervals"].toArray().size();
         ui->progressBar->setRange(0, num - 1);
         ui->progressBar->setValue(0);
         ui->tableWidget->setRowCount(0);
         ui->tableWidget->setSortingEnabled(false);
         if (!num)
-            QMessageBox::warning(this, tr("Warning!"), tr("没有找到满足条件的车票!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
         else
             ui->progressBar->show();
         for (int i = 0; i < num; i++)
         {
             ui->progressBar->setValue(i);
             QString id = routes["routeIntervals"].toArray()[i].toObject()["data"].toObject()["routeId"].toString();
-            QNetworkRequest queryRequest;
-            queryRequest.setUrl(QUrl(website+"/routes/"+id));
-            queryRequest.setRawHeader("Content-Type", "application/json");
-            queryRequest.setRawHeader("Cache-Control", "no-cache");
-            QNetworkAccessManager *queryManager=new QNetworkAccessManager;
-            QNetworkReply *queryReply = queryManager->get(queryRequest);
-            QEventLoop ev;
-            connect(queryReply, SIGNAL(finished()), &ev, SLOT(quit()));
-            ev.exec(QEventLoop::ExcludeUserInputEvents);
-            QByteArray bt = queryReply->readAll();
-            QJsonObject res = QJsonDocument::fromJson(bt).object()["data"].toObject();
-            QString train = res["name"].toString();
+            QString train = routes["routeIntervals"].toArray()[i].toObject()["data"].toObject()["routeName"].toString();
 
             QJsonObject t;
             t.insert("l", routes["routeIntervals"].toArray()[i].toObject()["data"].toObject()["l"].toInt());
             t.insert("r", routes["routeIntervals"].toArray()[i].toObject()["data"].toObject()["r"].toInt());
+            t.insert("date", date);
             QNetworkRequest queryRequest2;
             queryRequest2.setUrl(QUrl(website+"/routes/"+id+"/tickets"));
             queryRequest2.setRawHeader("Content-Type", "application/json");
             queryRequest2.setRawHeader("Cache-Control", "no-cache");
             QNetworkAccessManager *queryManager2=new QNetworkAccessManager;
             QNetworkReply *queryReply2 = queryManager2->post(queryRequest2, QJsonDocument(t).toJson());
+            QEventLoop ev;
             connect(queryReply2, SIGNAL(finished()), &ev, SLOT(quit()));
             ev.exec(QEventLoop::ExcludeUserInputEvents);
-            bt = queryReply2->readAll();
-            res = QJsonDocument::fromJson(bt).object();
+            QByteArray bt = queryReply2->readAll();
+            QJsonObject res = QJsonDocument::fromJson(bt).object();
             QJsonObject tickets = res["tickets"].toObject();
             QString stTime = res["startStation"].toObject()["leaveTime"].toString(), enTime = res["endStation"].toObject()["arriveTime"].toString();
 
@@ -155,6 +156,7 @@ void MainWindow::on_queryButton_clicked()
                     ui->tableWidget->setItem(rows, 3, new QTableWidgetItem(it.key()));
                     ui->tableWidget->setItem(rows, 4, new QTableWidgetItem(QString::number((*it).toObject()["price"].toDouble(), 10, 2)));
                     ui->tableWidget->setItem(rows, 5, new QTableWidgetItem(QString::number((*it).toObject()["number"].toInt(), 10)));
+                    ui->tableWidget->setItem(rows, 6, new QTableWidgetItem(QString::number(rows, 10)));
                     ui->tableWidget->show();
                 }
         }
@@ -169,19 +171,22 @@ void MainWindow::on_pushButton_clicked()
         QMessageBox::warning(this, tr("Warning!"), tr("请选择车票!!!"), QMessageBox::Yes);
     else
     {
-        int no = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
+        int row = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
+        int no = ui->tableWidget->item(row, 6)->text().toInt();
         Buy *w = new Buy;
         w->receiveUser(this->sendUser());
         w->receiveNo(routeIndex[no]);
         w->receiveRoutes(this->sendRoutes());
-        w->receiveTicketType(ui->tableWidget->item(no, 3)->text());
-        w->receivePrice(ui->tableWidget->item(no, 4)->text().toDouble());
+        w->receiveTicketType(ui->tableWidget->item(row, 3)->text());
+        w->receivePrice(ui->tableWidget->item(row, 4)->text().toDouble());
+        w->receiveDate(this->sendDate());
         w->setUI();
         if (w->exec() == QDialog::Accepted)
         {
             int num = w->sendNum();
-            int t = ui->tableWidget->item(no, 5)->text().toInt() - num;
-            ui->tableWidget->setItem(no, 5, new QTableWidgetItem(QString::number(t, 10)));
+            int t = ui->tableWidget->item(row, 5)->text().toInt() - num;
+            ui->tableWidget->setItem(row, 5, new QTableWidgetItem(QString::number(t, 10)));
+            ui->tableWidget->show();
         }
     }
 }
@@ -218,20 +223,24 @@ void MainWindow::on_stopButton_clicked()
         int no = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
         QString id = routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["routeId"].toString();
         QNetworkRequest startRequest;
-        startRequest.setUrl(QUrl(website+"/routes/"+id+"/stop"));
+        QJsonObject t;
+        t.insert("date", date);
+        startRequest.setUrl(QUrl(website+"/routes/"+id+"/tickets/stop"));
         startRequest.setRawHeader("Content-Type", "application/json");
         startRequest.setRawHeader("Cache-Control", "no-cache");
         QNetworkAccessManager *startManager=new QNetworkAccessManager;
-        QNetworkReply *startReply = startManager->get(startRequest);
+        QNetworkReply *startReply = startManager->post(startRequest,  QJsonDocument(t).toJson());
         QEventLoop ev;
         connect(startReply, SIGNAL(finished()), &ev, SLOT(quit()));
         ev.exec(QEventLoop::ExcludeUserInputEvents);
         QByteArray bt = startReply->readAll();
         QJsonObject res = QJsonDocument::fromJson(bt).object();
-        if (res["type"].toString() == "success")
+        if (res.isEmpty())
+            QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+        else if (res["type"].toString() == "error")
+            QMessageBox::warning(this, tr("Warning!"), tr("停止出售失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
+        else if (res["type"].toString() == "success")
             QMessageBox::warning(this, tr("Warning!"), tr("停止出售成功!!!"), QMessageBox::Yes);
-        else
-            QMessageBox::warning(this, tr("Warning!"), tr("停止出售失败!!!"), QMessageBox::Yes);
 
     }
 }

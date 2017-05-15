@@ -87,11 +87,16 @@
      <string>金额</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>序号</string>
+    </property>
+   </column>
   </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>610</x>
+     <x>540</x>
      <y>470</y>
      <width>93</width>
      <height>28</height>
@@ -99,6 +104,42 @@
    </property>
    <property name="text">
     <string>返回</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="refundButton">
+   <property name="geometry">
+    <rect>
+     <x>230</x>
+     <y>467</y>
+     <width>93</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>退票</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>470</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>470</y>
+     <width>72</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>退票数量:</string>
    </property>
   </widget>
  </widget>

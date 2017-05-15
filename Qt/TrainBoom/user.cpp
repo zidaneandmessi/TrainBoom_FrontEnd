@@ -67,7 +67,7 @@ void User::on_pushButton_clicked()
     QByteArray bt = chkusrReply->readAll();
     QJsonObject res = QJsonDocument::fromJson(bt).object();
     if (res["type"] == "error") id = QString("");
-    else id = res["userId"].toString();
+    else id = res["data"].toObject()["userId"].toString();
 
     if (id.isEmpty())
         QMessageBox::warning(this, tr("Warning!"), tr("用户名不存在!!!"), QMessageBox::Yes);

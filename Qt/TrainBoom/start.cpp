@@ -34,20 +34,36 @@ void Start::on_pushButton_2_clicked()
 
 void Start::on_pushButton_clicked()
 {
-    QString id = "";
+    QString id;
+    QJsonObject t;
+    QNetworkRequest stationRequest;
+    t.insert("name", ui->nameLineEdit->text());
+    stationRequest.setUrl(QUrl(website+"/routes/name"));
+    stationRequest.setRawHeader("Content-Type", "application/json");
+    stationRequest.setRawHeader("Cache-Control", "no-cache");
+    QNetworkAccessManager *stationManager=new QNetworkAccessManager;
+    QNetworkReply *stationReply = stationManager->post(stationRequest, QJsonDocument(t).toJson());
+    QEventLoop ev;
+    connect(stationReply, SIGNAL(finished()), &ev, SLOT(quit()));
+    ev.exec(QEventLoop::ExcludeUserInputEvents);
+    QByteArray bt = stationReply->readAll();
+    QJsonObject res = QJsonDocument::fromJson(bt).object();
+    id = res["routeId"].toString();
+
     QNetworkRequest startRequest;
-    startRequest.setUrl(QUrl(website+"/routes/"+id+"/start"));
+    startRequest.setUrl(QUrl(website+"/routes/"+id+"/tickets/start"));
     startRequest.setRawHeader("Content-Type", "application/json");
     startRequest.setRawHeader("Cache-Control", "no-cache");
     QNetworkAccessManager *startManager=new QNetworkAccessManager;
     QNetworkReply *startReply = startManager->get(startRequest);
-    QEventLoop ev;
     connect(startReply, SIGNAL(finished()), &ev, SLOT(quit()));
     ev.exec(QEventLoop::ExcludeUserInputEvents);
-    QByteArray bt = startReply->readAll();
-    QJsonObject res = QJsonDocument::fromJson(bt).object();
-    if (res["type"].toString() == "success")
+    bt = startReply->readAll();
+    res = QJsonDocument::fromJson(bt).object();
+    if (res.isEmpty())
+        QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+    else if (res["type"].toString() == "error")
+        QMessageBox::warning(this, tr("Warning!"), tr("开始发售失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
+    else if (res["type"].toString() == "success")
         QMessageBox::warning(this, tr("Warning!"), tr("开始发售成功!!!"), QMessageBox::Yes);
-    else
-        QMessageBox::warning(this, tr("Warning!"), tr("开始发售失败!!!"), QMessageBox::Yes);
 }

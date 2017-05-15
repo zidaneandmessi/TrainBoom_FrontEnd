@@ -26,7 +26,7 @@
     <string>确认</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="numLineEdit">
+  <widget class="QLineEdit" name="nameLineEdit">
    <property name="geometry">
     <rect>
      <x>130</x>

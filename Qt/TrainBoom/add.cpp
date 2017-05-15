@@ -44,6 +44,9 @@ void Add::on_pushButton_4_clicked()
         ui->tableWidget->setRowCount(ui->tableWidget->rowCount() - 1);
 }
 
+
+QJsonObject emptyJson;
+
 void Add::on_pushButton_clicked()
 {
     if (ui->lineEdit->text().isEmpty())
@@ -52,11 +55,33 @@ void Add::on_pushButton_clicked()
     {
         QString name = ui->lineEdit->text();
 
-        QString id = "";
+        QString id;
+        QJsonObject t;
+        QNetworkRequest stationRequest;
+        t.insert("name", ui->lineEdit->text());
+        stationRequest.setUrl(QUrl(website+"/routes/name"));
+        stationRequest.setRawHeader("Content-Type", "application/json");
+        stationRequest.setRawHeader("Cache-Control", "no-cache");
+        QNetworkAccessManager *stationManager=new QNetworkAccessManager;
+        QNetworkReply *stationReply = stationManager->post(stationRequest, QJsonDocument(t).toJson());
+        QEventLoop ev;
+        connect(stationReply, SIGNAL(finished()), &ev, SLOT(quit()));
+        ev.exec(QEventLoop::ExcludeUserInputEvents);
+        QByteArray bt = stationReply->readAll();
+        QJsonObject res = QJsonDocument::fromJson(bt).object();
+        id = res["routeId"].toString();
 
-        if (1)//存在
+
+        if (!id.isEmpty())
         {
-//删除
+            QNetworkRequest delRequest;
+            delRequest.setUrl(QUrl(website+"/routes/"+id));
+            delRequest.setRawHeader("Content-Type", "application/json");
+            delRequest.setRawHeader("Cache-Control", "no-cache");
+            QNetworkAccessManager *delManager=new QNetworkAccessManager;
+            QNetworkReply *delReply = delManager->deleteResource(delRequest);
+            connect(delReply, SIGNAL(finished()), &ev, SLOT(quit()));
+            ev.exec(QEventLoop::ExcludeUserInputEvents);
         }
         QJsonObject obj;
         QJsonArray infor, seg;
@@ -72,13 +97,12 @@ void Add::on_pushButton_clicked()
             if (i == 0 || ui->tableWidget->item(i, 0)->text() != ui->tableWidget->item(i - 1, 0)->text())
             {
                 stations++;
-                if (i > 0)
+                if (i > 1)
                 {
                     QJsonObject tttt;
                     tttt["tickets"] = tt;
                     seg.push_back(tttt);
-                    for (QJsonObject::iterator it = tt.begin(); it != tt.end(); )
-                            tt.erase(++it);
+                    tt = emptyJson;
                 }
                 if (i == 0)
                 {
@@ -109,21 +133,38 @@ void Add::on_pushButton_clicked()
                     infor.push_back(t);
                 }
             }
-            QJsonObject ttt;
-            ttt["nonstop"] = false;
-            ttt["price"] = ui->tableWidget->item(i, 5)->text().toDouble();
-            ttt["number"] = ui->tableWidget->item(i, 6)->text().toInt();
-            tt[ui->tableWidget->item(i, 4)->text()] = ttt;
+            if (i > 0)
+            {
+                QJsonObject ttt;
+                ttt.insert("nonstop", false);
+                ttt.insert("price",  ui->tableWidget->item(i, 5)->text().toDouble());
+                ttt.insert("number", ui->tableWidget->item(i, 6)->text().toInt());
+                tt.insert(ui->tableWidget->item(i, 4)->text(), ttt);
+            }
+        }
+        if (!tt.isEmpty())
+        {
+            QJsonObject tttt;
+            tttt["tickets"] = tt;
+            seg.push_back(tttt);
         }
         obj.insert("n", stations);
         obj.insert("informations", infor);
         obj.insert("segments", seg);
         QNetworkAccessManager *addManager=new QNetworkAccessManager;
         QNetworkReply *addReply = addManager->post(addRequest, QJsonDocument(obj).toJson());
-        QEventLoop ev;
         connect(addReply, SIGNAL(finished()), &ev, SLOT(quit()));
         ev.exec(QEventLoop::ExcludeUserInputEvents);
-        QByteArray bt = addReply->readAll();
-        QJsonObject res = QJsonDocument::fromJson(bt).object();
+        bt = addReply->readAll();
+        res = QJsonDocument::fromJson(bt).object();
+        if (res.isEmpty())
+            QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+        if (res["type"] == "error")
+            QMessageBox::warning(this, tr("Warning!"), tr("添加车次失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
+        else
+        {
+            QMessageBox::warning(this, tr("Warning!"), tr("添加车次成功!!!"), QMessageBox::Yes);
+            accept();
+        }
     }
 }

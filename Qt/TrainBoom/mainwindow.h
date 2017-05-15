@@ -17,8 +17,10 @@ public:
     ~MainWindow();
     void receiveUser(QJsonObject t);
     void receiveRoutes(QJsonObject t);
+    void receiveDate(QString t);
     QJsonObject sendUser();
     QJsonObject sendRoutes();
+    QString sendDate();
     void setUI();
 
 private slots:
@@ -40,6 +42,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QJsonObject usrInfo, routes;
+    QString date;
 };
 
 #endif // MAINWINDOW_H

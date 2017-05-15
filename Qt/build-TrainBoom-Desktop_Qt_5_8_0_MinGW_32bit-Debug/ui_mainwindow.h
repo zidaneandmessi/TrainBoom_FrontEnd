@@ -96,8 +96,8 @@ public:
         queryButton->setObjectName(QStringLiteral("queryButton"));
         queryButton->setGeometry(QRect(40, 80, 101, 28));
         tableWidget = new QTableWidget(centralWidget);
-        if (tableWidget->columnCount() < 6)
-            tableWidget->setColumnCount(6);
+        if (tableWidget->columnCount() < 7)
+            tableWidget->setColumnCount(7);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -110,6 +110,8 @@ public:
         tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         QTableWidgetItem *__qtablewidgetitem5 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(5, __qtablewidgetitem5);
+        QTableWidgetItem *__qtablewidgetitem6 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(170, 70, 641, 381));
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -205,6 +207,8 @@ public:
         ___qtablewidgetitem4->setText(QApplication::translate("MainWindow", "\345\215\225\344\273\267", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem5 = tableWidget->horizontalHeaderItem(5);
         ___qtablewidgetitem5->setText(QApplication::translate("MainWindow", "\345\211\251\344\275\231\346\225\260\351\207\217", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem6 = tableWidget->horizontalHeaderItem(6);
+        ___qtablewidgetitem6->setText(QApplication::translate("MainWindow", "\345\272\217\345\217\267", Q_NULLPTR));
         startButton->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\345\217\221\345\224\256\n"
 "\346\237\220\350\275\246\346\254\241\n"
 "\346\211\200\346\234\211\350\275\246\347\245\250", Q_NULLPTR));

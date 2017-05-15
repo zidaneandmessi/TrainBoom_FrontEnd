@@ -104,6 +104,11 @@
       <string>剩余数量</string>
      </property>
     </column>
+    <column>
+     <property name="text">
+      <string>序号</string>
+     </property>
+    </column>
    </widget>
    <widget class="QProgressBar" name="progressBar">
     <property name="geometry">

@@ -16,6 +16,7 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
 
@@ -27,6 +28,9 @@ public:
     QLabel *label_3;
     QTableWidget *tableWidget;
     QPushButton *pushButton;
+    QPushButton *refundButton;
+    QLineEdit *lineEdit;
+    QLabel *label;
 
     void setupUi(QDialog *Order)
     {
@@ -41,8 +45,8 @@ public:
         font.setPointSize(18);
         label_3->setFont(font);
         tableWidget = new QTableWidget(Order);
-        if (tableWidget->columnCount() < 8)
-            tableWidget->setColumnCount(8);
+        if (tableWidget->columnCount() < 9)
+            tableWidget->setColumnCount(9);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -59,13 +63,24 @@ public:
         tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(8, __qtablewidgetitem8);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(20, 70, 721, 371));
         tableWidget->setLayoutDirection(Qt::LeftToRight);
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
         pushButton = new QPushButton(Order);
         pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(610, 470, 93, 28));
+        pushButton->setGeometry(QRect(540, 470, 93, 28));
+        refundButton = new QPushButton(Order);
+        refundButton->setObjectName(QStringLiteral("refundButton"));
+        refundButton->setGeometry(QRect(230, 467, 93, 31));
+        lineEdit = new QLineEdit(Order);
+        lineEdit->setObjectName(QStringLiteral("lineEdit"));
+        lineEdit->setGeometry(QRect(120, 470, 81, 21));
+        label = new QLabel(Order);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(50, 470, 72, 21));
 
         retranslateUi(Order);
 
@@ -92,7 +107,11 @@ public:
         ___qtablewidgetitem6->setText(QApplication::translate("Order", "\346\225\260\351\207\217", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
         ___qtablewidgetitem7->setText(QApplication::translate("Order", "\351\207\221\351\242\235", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem8 = tableWidget->horizontalHeaderItem(8);
+        ___qtablewidgetitem8->setText(QApplication::translate("Order", "\345\272\217\345\217\267", Q_NULLPTR));
         pushButton->setText(QApplication::translate("Order", "\350\277\224\345\233\236", Q_NULLPTR));
+        refundButton->setText(QApplication::translate("Order", "\351\200\200\347\245\250", Q_NULLPTR));
+        label->setText(QApplication::translate("Order", "\351\200\200\347\245\250\346\225\260\351\207\217:", Q_NULLPTR));
     } // retranslateUi
 
 };

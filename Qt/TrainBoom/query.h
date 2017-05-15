@@ -15,6 +15,7 @@ class Query : public QDialog
 public:
     explicit Query(QWidget *parent = 0);
     QJsonObject sendRoutes();
+    QString sendDate();
     ~Query();
 
 private slots:
@@ -24,6 +25,7 @@ private slots:
 private:
     Ui::Query *ui;
     QJsonObject routes;
+    QString date;
 };
 
 #endif // QUERY_H

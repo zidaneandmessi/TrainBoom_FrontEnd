@@ -64,14 +64,13 @@ void LoginDialog::on_loginBtn_clicked()
     ev.exec(QEventLoop::ExcludeUserInputEvents);
     QByteArray bt = chkusrReply->readAll();
     QJsonObject res = QJsonDocument::fromJson(bt).object();
-    if (res["type"] == "error") id = QString("");
-    else id = res["userId"].toString();
-
-
-    if (id.isEmpty())
-        QMessageBox::warning(this, tr("Warning!"), tr("用户名不存在!!!"), QMessageBox::Yes);
+    if (res.isEmpty())
+        QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+    else if (res["type"] == "error")
+        QMessageBox::warning(this, tr("Warning!"), tr("登录失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
     else
     {
+        id = res["userId"].toString();
         QNetworkRequest loginRequest;
         loginRequest.setUrl(QUrl(website+"/users/"+id));
         loginRequest.setRawHeader("Content-Type", "application/json");
@@ -83,7 +82,7 @@ void LoginDialog::on_loginBtn_clicked()
         ev.exec(QEventLoop::ExcludeUserInputEvents);
         bt = loginReply->readAll();
         res = QJsonDocument::fromJson(bt).object();
-        if(res["data"].toObject()["password"] == loginEncrypt(ui->pwdLineEdit->text()))
+        if (res["data"].toObject()["password"] == loginEncrypt(ui->pwdLineEdit->text()+"|"+res["data"].toObject()["salt"].toString()))
         {
             usrInfo = res["data"].toObject();
             accept();

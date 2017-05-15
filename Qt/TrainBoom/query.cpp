@@ -35,6 +35,10 @@ QJsonObject Query::sendRoutes()
 {
     return routes;
 }
+QString Query::sendDate()
+{
+    return date;
+}
 
 void Query::on_pushButton_2_clicked()
 {
@@ -54,7 +58,7 @@ void Query::on_pushButton_clicked()
         QJsonObject t;
         t.insert("startStation", ui->stLineEdit->text());
         t.insert("endStation", ui->enLineEdit->text());
-        t.insert("date", ui->dateEdit->text());
+        date = ui->dateEdit->text();
         QNetworkRequest queryRequest;
         queryRequest.setUrl(QUrl(website+"/routeInterval/get"));
         queryRequest.setRawHeader("Content-Type", "application/json");
@@ -67,7 +71,7 @@ void Query::on_pushButton_clicked()
         QByteArray bt = queryReply->readAll();
         QJsonObject res = QJsonDocument::fromJson(bt).object();
         if (res["type"] == "error")
-            QMessageBox::warning(this, tr("Warning!"), tr("没有找到满足条件的车票!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("没找到符合条件的票!!!"), QMessageBox::Yes);
         else
         {
             routes = res;

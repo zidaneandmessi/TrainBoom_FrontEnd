@@ -34,20 +34,37 @@ void Delete::on_pushButton_2_clicked()
 
 void Delete::on_pushButton_clicked()
 {
-    QString id = "";
+    QString id;
+    QJsonObject t;
+    QNetworkRequest stationRequest;
+    t.insert("name", ui->nameLineEdit->text());
+    stationRequest.setUrl(QUrl(website+"/routes/name"));
+    stationRequest.setRawHeader("Content-Type", "application/json");
+    stationRequest.setRawHeader("Cache-Control", "no-cache");
+    QNetworkAccessManager *stationManager=new QNetworkAccessManager;
+    QNetworkReply *stationReply = stationManager->post(stationRequest, QJsonDocument(t).toJson());
+    QEventLoop ev;
+    connect(stationReply, SIGNAL(finished()), &ev, SLOT(quit()));
+    ev.exec(QEventLoop::ExcludeUserInputEvents);
+    QByteArray bt = stationReply->readAll();
+    QJsonObject res = QJsonDocument::fromJson(bt).object();
+    id = res["routeId"].toString();
+
     QNetworkRequest delRequest;
-    delRequest.setUrl(QUrl(website+"/routes/"+id+"/delete"));
+    delRequest.setUrl(QUrl(website+"/routes/"+id));
     delRequest.setRawHeader("Content-Type", "application/json");
     delRequest.setRawHeader("Cache-Control", "no-cache");
     QNetworkAccessManager *delManager=new QNetworkAccessManager;
-    QNetworkReply *delReply = delManager->get(delRequest);
-    QEventLoop ev;
+    QNetworkReply *delReply = delManager->deleteResource(delRequest);
     connect(delReply, SIGNAL(finished()), &ev, SLOT(quit()));
     ev.exec(QEventLoop::ExcludeUserInputEvents);
-    QByteArray bt = delReply->readAll();
-    QJsonObject res = QJsonDocument::fromJson(bt).object();
-    if (res["type"].toString() == "success")
+    bt = delReply->readAll();
+    res = QJsonDocument::fromJson(bt).object();
+
+    if (res.isEmpty())
+        QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+    else if (res["type"] == "error")
+        QMessageBox::warning(this, tr("Warning!"), tr("删除车次失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
+    else if (res["type"].toString() == "success")
         QMessageBox::warning(this, tr("Warning!"), tr("删除车次成功!!!"), QMessageBox::Yes);
-    else
-        QMessageBox::warning(this, tr("Warning!"), tr("删除车次失败!!!"), QMessageBox::Yes);
 }

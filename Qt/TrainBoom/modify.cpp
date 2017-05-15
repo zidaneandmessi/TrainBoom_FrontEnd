@@ -117,7 +117,6 @@ void modify::on_regBtn_clicked()
         modRequest.setRawHeader("Cache-Control", "no-cache");
         QNetworkAccessManager *modManager=new QNetworkAccessManager;
         QNetworkReply *modReply = modManager->put(modRequest, QJsonDocument(obj).toJson());
-        ev;
         connect(modReply, SIGNAL(finished()), &ev, SLOT(quit()));
         ev.exec(QEventLoop::ExcludeUserInputEvents);
         bt = modReply->readAll();

@@ -39,7 +39,7 @@
     <string>车次编号:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="numLineEdit">
+  <widget class="QLineEdit" name="nameLineEdit">
    <property name="geometry">
     <rect>
      <x>120</x>

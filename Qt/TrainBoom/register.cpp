@@ -82,8 +82,15 @@ void Register::on_regBtn_clicked()
         {
             QJsonObject obj;
             obj.insert("username", ui->userLineEdit->text());
-            obj.insert("password", regEncrypt(ui->pwdLineEdit->text()));
-            obj.insert("salt", "gzotpa");
+            QString tmp = QString("0123456789ABCDEFGHIJKLMNOPQRSTUVWZYZ");
+            QString salt;
+            salt.clear();
+            QTime t = QTime::currentTime();
+            qsrand(t.msec()+t.second()*1000);
+            for (int i = 0; i < 8; i++)
+                salt[i] = tmp.at(qrand() % tmp.length());
+            obj.insert("password", regEncrypt(ui->pwdLineEdit->text()+"|"+salt));
+            obj.insert("salt", salt);
             obj.insert("avatar", "avatar.png");
             obj.insert("realname", ui->realLineEdit->text());
             obj.insert("phone", ui->phoneLineEdit->text());
@@ -92,7 +99,10 @@ void Register::on_regBtn_clicked()
             else if(ui->femaleRadioBtn->isChecked()) obj.insert("gender", 1);
             else if(ui->elseRadioBtn->isChecked()) obj.insert("gender", 2);
             obj.insert("motto", ui->mottoLineEdit->text());
-            obj.insert("isroot", 0);
+            if (ui->userLineEdit->text() == "gzotpa")
+                obj.insert("isRoot", true);
+            else
+                obj.insert("isRoot", false);
             QNetworkRequest regRequest;
             regRequest.setUrl(QUrl(website+"/users"));
             regRequest.setRawHeader("Content-Type", "application/json");
@@ -104,8 +114,12 @@ void Register::on_regBtn_clicked()
             ev.exec(QEventLoop::ExcludeUserInputEvents);
             bt = regReply->readAll();
             res = QJsonDocument::fromJson(bt).object();
-
-            this->close();
+            if (res.isEmpty())
+                QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+            else if (res["type"] == "error")
+                QMessageBox::warning(this, tr("Warning!"), tr("注册失败!!!") + res["data"].toObject()["errMsg"].toString(), QMessageBox::Yes);
+            else
+                this->close();
         }
     }
 }

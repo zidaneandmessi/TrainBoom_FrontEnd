@@ -26,7 +26,7 @@ class Ui_Delete
 public:
     QPushButton *pushButton_2;
     QLabel *label;
-    QLineEdit *numLineEdit;
+    QLineEdit *nameLineEdit;
     QPushButton *pushButton;
 
     void setupUi(QDialog *Delete)
@@ -40,9 +40,9 @@ public:
         label = new QLabel(Delete);
         label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(30, 30, 81, 21));
-        numLineEdit = new QLineEdit(Delete);
-        numLineEdit->setObjectName(QStringLiteral("numLineEdit"));
-        numLineEdit->setGeometry(QRect(120, 30, 101, 21));
+        nameLineEdit = new QLineEdit(Delete);
+        nameLineEdit->setObjectName(QStringLiteral("nameLineEdit"));
+        nameLineEdit->setGeometry(QRect(120, 30, 101, 21));
         pushButton = new QPushButton(Delete);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(40, 80, 71, 28));
@@ -57,7 +57,7 @@ public:
         Delete->setWindowTitle(QApplication::translate("Delete", "Dialog", Q_NULLPTR));
         pushButton_2->setText(QApplication::translate("Delete", "\350\277\224\345\233\236", Q_NULLPTR));
         label->setText(QApplication::translate("Delete", "\350\275\246\346\254\241\347\274\226\345\217\267:", Q_NULLPTR));
-        numLineEdit->setText(QString());
+        nameLineEdit->setText(QString());
         pushButton->setText(QApplication::translate("Delete", "\347\241\256\350\256\244", Q_NULLPTR));
     } // retranslateUi
 

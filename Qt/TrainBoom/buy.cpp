@@ -49,6 +49,11 @@ void Buy::receiveRoutes(QJsonObject t)
 {
     routes = t;
 }
+void Buy::receiveDate(QString t)
+{
+    date = t;
+}
+
 void Buy::receiveTicketType(QString t)
 {
     ticketType = t;
@@ -65,11 +70,13 @@ int Buy::sendNum()
 
 void Buy::on_pushButton_clicked()
 {
-    int num = ui->numLineEdit->text().toInt();
-    if (num <= 0)
+    if (ui->numLineEdit->text().isEmpty())
+        QMessageBox::warning(this, tr("Warning!"), tr("请输入数量!!!"), QMessageBox::Yes);
+    else if (ui->numLineEdit->text().toInt() <= 0)
         QMessageBox::warning(this, tr("Warning!"), tr("数量不合法!!!"), QMessageBox::Yes);
     else
     {
+        int num = ui->numLineEdit->text().toInt();
         QString id;
         QJsonObject t;
         t.insert("username", usrInfo["username"]);
@@ -88,27 +95,31 @@ void Buy::on_pushButton_clicked()
         else id = res["userId"].toString();
 
         QJsonObject t2;
+        t2.insert("date", date);
         t2.insert("l", routes["routeIntervals"].toArray()[noIndex].toObject()["data"].toObject()["l"].toInt());
         t2.insert("r", routes["routeIntervals"].toArray()[noIndex].toObject()["data"].toObject()["r"].toInt());
         t2.insert("ticketNumber", num);
         t2.insert("userId", id);
         t2.insert("ticketType", ticketType);
         QNetworkRequest bookRequest;
-        bookRequest.setUrl(QUrl(website+"/routes/"+routes["routeIntervals"].toArray()[noIndex].toObject()["data"].toObject()["routeId"].toString()+"/tickets"));
+        bookRequest.setUrl(QUrl(website+"/routes/"+routes["routeIntervals"].toArray()[noIndex].toObject()["data"].toObject()["routeId"].toString()+"/tickets/book"));
+
         bookRequest.setRawHeader("Content-Type", "application/json");
         bookRequest.setRawHeader("Cache-Control", "no-cache");
         QNetworkAccessManager *bookManager=new QNetworkAccessManager;
-        QNetworkReply *bookReply = bookManager->put(bookRequest, QJsonDocument(t2).toJson());
+        QNetworkReply *bookReply = bookManager->post(bookRequest, QJsonDocument(t2).toJson());
         connect(bookReply, SIGNAL(finished()), &ev, SLOT(quit()));
         ev.exec(QEventLoop::ExcludeUserInputEvents);
         bt = bookReply->readAll();
         res = QJsonDocument::fromJson(bt).object();
 
-        if(res["type"] == "error")
+        if(res.isEmpty())
+            QMessageBox::warning(this, tr("Warning!"), tr("服务器连接失败!!!"), QMessageBox::Yes);
+        else if(res["type"] == "error")
             QMessageBox::warning(this, tr("Warning!"), tr("订票失败!!!"), QMessageBox::Yes);
         else
         {
-            QMessageBox::warning(this, tr("Warning!"), tr("订票成功!!!"), QMessageBox::Yes);
+            QMessageBox::warning(this, tr("Warning!"), tr("订票成功，您的订单号为")+res["id"].toString()+tr("!!!"), QMessageBox::Yes);
             Num = num;
             accept();
         }
