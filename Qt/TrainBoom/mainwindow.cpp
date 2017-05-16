@@ -10,6 +10,7 @@
 #include "start.h"
 #include "delete.h"
 #include "add.h"
+#include "ticket.h"
 #include "qjsonarray.h"
 #include "qtablewidget.h"
 #include <Qstring>
@@ -109,15 +110,20 @@ void MainWindow::on_queryButton_clicked()
     {
         receiveRoutes(w->sendRoutes());
         receiveDate(w->sendDate());
-        int num = routes["routeIntervals"].toArray().size();
+        int num = 0;
         ui->progressBar->setRange(0, num - 1);
         ui->progressBar->setValue(0);
         ui->tableWidget->setRowCount(0);
         ui->tableWidget->setSortingEnabled(false);
-        if (!num)
+        if (routes.isEmpty())
             QMessageBox::warning(this, tr("Warning!"), tr("连接服务器失败!!!"), QMessageBox::Yes);
+        else if (!routes["routeIntervals"].toArray().size())
+            QMessageBox::warning(this, tr("Warning!"), tr("没找到符合条件的票!!!"), QMessageBox::Yes);
         else
+        {
+            num = routes["routeIntervals"].toArray().size();
             ui->progressBar->show();
+        }
         for (int i = 0; i < num; i++)
         {
             ui->progressBar->setValue(i);
@@ -219,7 +225,8 @@ void MainWindow::on_stopButton_clicked()
 
     else
     {
-        int no = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
+        int row = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
+        int no = ui->tableWidget->item(row, 6)->text().toInt();
         QString id = routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["routeId"].toString();
         QNetworkRequest startRequest;
         QJsonObject t;
@@ -275,4 +282,15 @@ void MainWindow::on_pushButton_5_clicked()
         Add *w = new Add;
         w->exec();
     }
+}
+
+void MainWindow::on_tableWidget_doubleClicked(const QModelIndex &index)
+{
+    int row = index.row();
+    int no = ui->tableWidget->item(row, 6)->text().toInt();
+    QString routeId = routes["routeIntervals"].toArray()[routeIndex[no]].toObject()["data"].toObject()["routeId"].toString();
+    Ticket *w = new Ticket;
+    w->receiveRouteId(routeId);
+    w->setUI();
+    w->exec();
 }

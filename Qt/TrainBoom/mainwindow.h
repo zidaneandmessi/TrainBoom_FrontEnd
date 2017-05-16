@@ -39,6 +39,8 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void on_tableWidget_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     QJsonObject usrInfo, routes;

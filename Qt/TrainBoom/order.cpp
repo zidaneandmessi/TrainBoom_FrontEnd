@@ -71,7 +71,6 @@ void Order::setUI()
     res = QJsonDocument::fromJson(bt).object();
     QJsonArray orders = res["orders"].toArray();
     int num = orders.size();
-
     for (int i = 0; i < num; i++)
     {
         QString orderId = orders[i].toString();
@@ -207,3 +206,4 @@ void Order::on_refundButton_clicked()
             QMessageBox::warning(this, tr("Warning!"), tr("退票成功!!!"));
     }
 }
+

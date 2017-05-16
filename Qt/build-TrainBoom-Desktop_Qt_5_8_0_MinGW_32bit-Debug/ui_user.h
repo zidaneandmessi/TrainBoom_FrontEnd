@@ -81,8 +81,8 @@ public:
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(320, 100, 41, 21));
         tableWidget = new QTableWidget(User);
-        if (tableWidget->columnCount() < 8)
-            tableWidget->setColumnCount(8);
+        if (tableWidget->columnCount() < 9)
+            tableWidget->setColumnCount(9);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
@@ -99,6 +99,8 @@ public:
         tableWidget->setHorizontalHeaderItem(6, __qtablewidgetitem6);
         QTableWidgetItem *__qtablewidgetitem7 = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(7, __qtablewidgetitem7);
+        QTableWidgetItem *__qtablewidgetitem8 = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(8, __qtablewidgetitem8);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
         tableWidget->setGeometry(QRect(450, 80, 641, 371));
         tableWidget->setLayoutDirection(Qt::LeftToRight);
@@ -160,6 +162,8 @@ public:
         ___qtablewidgetitem6->setText(QApplication::translate("User", "\346\225\260\351\207\217", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem7 = tableWidget->horizontalHeaderItem(7);
         ___qtablewidgetitem7->setText(QApplication::translate("User", "\351\207\221\351\242\235", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem8 = tableWidget->horizontalHeaderItem(8);
+        ___qtablewidgetitem8->setText(QApplication::translate("User", "id", Q_NULLPTR));
         realName->setText(QString());
         phone->setText(QString());
         email->setText(QString());

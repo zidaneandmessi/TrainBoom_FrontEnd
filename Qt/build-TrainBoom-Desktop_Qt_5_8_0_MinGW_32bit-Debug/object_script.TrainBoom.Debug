@@ -11,6 +11,7 @@ INPUT(
 ./debug\start.o
 ./debug\delete.o
 ./debug\add.o
+./debug\ticket.o
 ./debug\moc_mainwindow.o
 ./debug\moc_logindialog.o
 ./debug\moc_register.o
@@ -22,4 +23,5 @@ INPUT(
 ./debug\moc_start.o
 ./debug\moc_delete.o
 ./debug\moc_add.o
+./debug\moc_ticket.o
 );

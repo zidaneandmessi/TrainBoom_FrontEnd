@@ -188,6 +188,11 @@
      <string>金额</string>
     </property>
    </column>
+   <column>
+    <property name="text">
+     <string>id</string>
+    </property>
+   </column>
   </widget>
   <widget class="QLabel" name="realName">
    <property name="geometry">

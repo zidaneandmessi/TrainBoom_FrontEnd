@@ -2,6 +2,7 @@
 #include "logindialog.h"
 #include <QApplication>
 #include <QJsonObject>
+#include <QTime>
 
 QJsonObject usrInfo;
 
