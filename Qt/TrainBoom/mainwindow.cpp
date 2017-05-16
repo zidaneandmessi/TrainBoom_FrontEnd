@@ -147,6 +147,12 @@ void MainWindow::on_queryButton_clicked()
             ui->progressBar->setRange(0, num - 1);
             ui->progressBar->show();
         }
+        music->stop();
+        QMediaPlaylist *playlist = new QMediaPlaylist;
+        playlist->addMedia(QUrl("http://maoudamashii.jokersounds.com/music/se/mp3/se_maoudamashii_se_phone01.mp3"));
+        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+        music->setPlaylist(playlist);
+        music->play();
         for (int i = 0; i < num; i++)
         {
             ui->progressBar->setValue(i);

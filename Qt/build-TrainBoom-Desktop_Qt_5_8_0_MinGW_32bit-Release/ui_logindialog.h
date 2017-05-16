@@ -88,7 +88,7 @@ public:
         pwdLineEdit->setPlaceholderText(QString());
         loginBtn->setText(QApplication::translate("LoginDialog", "\347\231\273\345\275\225", Q_NULLPTR));
         exitBtn->setText(QApplication::translate("LoginDialog", "\351\200\200\345\207\272", Q_NULLPTR));
-        label_3->setText(QApplication::translate("LoginDialog", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
+        label_3->setText(QApplication::translate("LoginDialog", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\255\243\345\274\217\347\211\210", Q_NULLPTR));
         regBtn->setText(QApplication::translate("LoginDialog", "\346\263\250\345\206\214", Q_NULLPTR));
     } // retranslateUi
 

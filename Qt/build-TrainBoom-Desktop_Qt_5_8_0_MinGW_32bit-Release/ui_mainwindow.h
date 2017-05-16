@@ -193,7 +193,7 @@ public:
         actionWillYoung->setText(QApplication::translate("MainWindow", "WillYoung", Q_NULLPTR));
         actionCreeperLin->setText(QApplication::translate("MainWindow", "CreeperLin", Q_NULLPTR));
         pushButton->setText(QApplication::translate("MainWindow", "\350\264\255\344\271\260", Q_NULLPTR));
-        label_3->setText(QApplication::translate("MainWindow", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\265\213\350\257\225\347\211\210", Q_NULLPTR));
+        label_3->setText(QApplication::translate("MainWindow", "\345\260\233\347\204\261\350\275\237\347\263\273\347\273\237\346\255\243\345\274\217\347\211\210", Q_NULLPTR));
         queryButton->setText(QApplication::translate("MainWindow", "\346\237\245\350\257\242", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\350\275\246\346\254\241", Q_NULLPTR));

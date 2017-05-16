@@ -46,7 +46,7 @@
      </font>
     </property>
     <property name="text">
-     <string>尛焱轟系统测试版</string>
+     <string>尛焱轟系统正式版</string>
     </property>
    </widget>
    <widget class="QPushButton" name="queryButton">
