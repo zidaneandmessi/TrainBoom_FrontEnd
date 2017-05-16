@@ -21,6 +21,8 @@
 #include <QJsonObject>
 #include <QByteArray>
 #include <QJsonDocument>
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
 
 const QString website = "http://39.108.7.208:3000";
 
@@ -29,6 +31,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    defaultPlaylist = new QMediaPlaylist;
+    defaultPlaylist->addMedia(QUrl("http://maoudamashii.jokersounds.com/music/game/mp3/game_maoudamashii_5_castle06.mp3"));
+    defaultPlaylist->setPlaybackMode(QMediaPlaylist::Loop);
+    music = new QMediaPlayer;
+    music->setPlaylist(defaultPlaylist);
+
     ui->tableWidget->hideColumn(6);
     for(int i = 0; i < 6; i++)
         ui->tableWidget->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
@@ -37,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setAlternatingRowColors(true);
     ui->tableWidget->setSortingEnabled(true);
     ui->progressBar->hide();
+
 }
 void MainWindow::setUI()
 {
@@ -83,13 +93,20 @@ void MainWindow::on_action_UL_triggered()
 {
     usrInfo = QJsonObject();
     this->close();
+    music->stop();
     LoginDialog *w = new LoginDialog;
     if (w->exec() == QDialog::Accepted)
     {
         receiveUser(w->sendUser());
+        music->play();
         this->setUI();
         this->show();
     }
+}
+
+void MainWindow::playMusic()
+{
+    music->play();
 }
 
 void MainWindow::on_action_UM_triggered()
@@ -105,13 +122,18 @@ int routeIndex[2001];
 
 void MainWindow::on_queryButton_clicked()
 {
+    music->stop();
+    QMediaPlaylist *playlist = new QMediaPlaylist;
+    playlist->addMedia(QUrl("http://maoudamashii.jokersounds.com/music/se/mp3/se_maoudamashii_se_vehicle02.mp3"));
+    playlist->setPlaybackMode(QMediaPlaylist::Loop);
+    music->setPlaylist(playlist);
+    music->play();
     Query *w = new Query;
     if(w->exec() == QDialog::Accepted)
     {
         receiveRoutes(w->sendRoutes());
         receiveDate(w->sendDate());
         int num = 0;
-        ui->progressBar->setRange(0, num - 1);
         ui->progressBar->setValue(0);
         ui->tableWidget->setRowCount(0);
         ui->tableWidget->setSortingEnabled(false);
@@ -122,6 +144,7 @@ void MainWindow::on_queryButton_clicked()
         else
         {
             num = routes["routeIntervals"].toArray().size();
+            ui->progressBar->setRange(0, num - 1);
             ui->progressBar->show();
         }
         for (int i = 0; i < num; i++)
@@ -168,6 +191,9 @@ void MainWindow::on_queryButton_clicked()
         ui->tableWidget->setSortingEnabled(true);
         ui->progressBar->hide();
     }
+    music->stop();
+    music->setPlaylist(defaultPlaylist);
+    music->play();
 }
 
 void MainWindow::on_pushButton_clicked()
@@ -176,6 +202,13 @@ void MainWindow::on_pushButton_clicked()
         QMessageBox::warning(this, tr("Warning!"), tr("请选择车票!!!"), QMessageBox::Yes);
     else
     {
+        music->stop();
+        QMediaPlaylist *playlist = new QMediaPlaylist;
+        playlist->addMedia(QUrl("http://maoudamashii.jokersounds.com/music/game/mp3/game_maoudamashii_4_vehicle03.mp3"));
+        playlist->setPlaybackMode(QMediaPlaylist::Loop);
+        music->setPlaylist(playlist);
+        music->play();
+
         int row = ui->tableWidget->row(ui->tableWidget->selectedItems().at(0));
         int no = ui->tableWidget->item(row, 6)->text().toInt();
         Buy *w = new Buy;
@@ -193,6 +226,9 @@ void MainWindow::on_pushButton_clicked()
             ui->tableWidget->setItem(row, 5, new QTableWidgetItem(QString::number(t, 10)));
             ui->tableWidget->show();
         }
+        music->stop();
+        music->setPlaylist(defaultPlaylist);
+        music->play();
     }
 }
 
@@ -293,4 +329,35 @@ void MainWindow::on_tableWidget_doubleClicked(const QModelIndex &index)
     w->receiveRouteId(routeId);
     w->setUI();
     w->exec();
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QMessageBox::warning(this, tr("Warning!"), tr("请自行登录服务器查询!!!"), QMessageBox::Yes);
+}
+
+void MainWindow::on_actionfootoredo_triggered()
+{
+    QMessageBox t(QMessageBox::NoIcon, "footoredo", "");
+    t.setIconPixmap(QPixmap("footoredo.png"));
+    t.exec();
+}
+void MainWindow::on_actionzidaneandmessi_triggered()
+{
+    QMessageBox t(QMessageBox::NoIcon, "ZidaneAndMessi", "");
+    t.setIconPixmap(QPixmap("zidaneandmessi.png"));
+    t.exec();
+}
+void MainWindow::on_actionCreeperLin_triggered()
+{
+    QMessageBox t(QMessageBox::NoIcon, "CreeperLin", "");
+    t.setStyleSheet("background-color:black");
+    t.setIconPixmap(QPixmap("creeperlin.png"));
+    t.exec();
+}
+void MainWindow::on_actionWillYoung_triggered()
+{
+    QMessageBox t(QMessageBox::NoIcon, "WillYoung", "");
+    t.setIconPixmap(QPixmap("willyoung.png"));
+    t.exec();
 }

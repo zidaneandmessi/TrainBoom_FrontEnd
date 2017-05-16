@@ -11,6 +11,8 @@
 #include <QNetworkRequest>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
 
 const QString website = "http://39.108.7.208:3000";
 
@@ -111,6 +113,24 @@ void Buy::on_pushButton_clicked()
         ev.exec(QEventLoop::ExcludeUserInputEvents);
         bt = bookReply->readAll();
         res = QJsonDocument::fromJson(bt).object();
+
+        QByteArray msg = QUrl::toPercentEncoding("请向footoredo付款" + QString::number(res["data"].toObject()["ticketPrice"].toDouble(), 10, 1) + "元");
+        QString url =  "http://api.qrserver.com/v1/create-qr-code/?size=300x300&data=";
+        url.append(msg);
+
+        QMessageBox msgBox(QMessageBox::NoIcon, "请通过扫描二维码支付", "");
+        QPixmap pixmap;
+        QNetworkAccessManager *picManager = new QNetworkAccessManager(this);
+        QNetworkRequest picRequest;
+        picRequest.setUrl(QUrl(url));
+        QNetworkReply *picReply = picManager->get(picRequest);
+        connect(picReply, SIGNAL(finished()), &ev, SLOT(quit()));
+        ev.exec(QEventLoop::ExcludeUserInputEvents);
+        bt = picReply->readAll();
+        pixmap.loadFromData(bt, "png");
+        pixmap.save("qr.png");
+        msgBox.setIconPixmap(pixmap);
+        msgBox.exec();
 
         if(res.isEmpty())
             QMessageBox::warning(this, tr("Warning!"), tr("服务器连接失败!!!"), QMessageBox::Yes);

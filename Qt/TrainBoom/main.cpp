@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
         w.receiveUser(dlg.sendUser());
         w.setUI();
         w.show();
+        w.playMusic();
         return a.exec();
     }
 }

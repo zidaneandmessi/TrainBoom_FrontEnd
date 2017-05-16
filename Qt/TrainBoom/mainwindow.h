@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QJsonObject>
+#include <QMediaPlaylist>
+#include <QMediaPlayer>
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +24,7 @@ public:
     QJsonObject sendRoutes();
     QString sendDate();
     void setUI();
+    void playMusic();
 
 private slots:
     void on_action_UL_triggered();
@@ -41,10 +44,22 @@ private slots:
 
     void on_tableWidget_doubleClicked(const QModelIndex &index);
 
+    void on_pushButton_4_clicked();
+
+    void on_actionfootoredo_triggered();
+
+    void on_actionzidaneandmessi_triggered();
+
+    void on_actionCreeperLin_triggered();
+
+    void on_actionWillYoung_triggered();
+
 private:
     Ui::MainWindow *ui;
     QJsonObject usrInfo, routes;
     QString date;
+    QMediaPlaylist *defaultPlaylist;
+    QMediaPlayer *music;
 };
 
 #endif // MAINWINDOW_H
